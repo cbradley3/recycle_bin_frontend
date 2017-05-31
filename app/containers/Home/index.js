@@ -27,8 +27,7 @@ export default class Home extends React.PureComponent {
       display:"flex",
       flexDirection:"column",
       alignItems:"center",
-      justifyContent:"center",
-      backgroundPosition:"center",
+
     }
 
     return (
