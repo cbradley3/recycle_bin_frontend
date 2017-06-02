@@ -329,7 +329,7 @@ export default class About extends React.PureComponent {
                 <p style={textStyle2}>Charlie Bradley III:<br/>
                 - Genius, billionaire, playboy, philanthropist.<br/>
                 But when he isn't being Tony Stark, Charlie is busy with front and back end web development, print graphic design projects or creating
-                artwork. Spending time at 2nd and Charles with his kids is his first past time...next to building arc reactor powered metal suits of armor.</p><br/>
+                artwork. Spending time at 2nd and Charles with his kids is his favorite past time...next to building arc reactor powered metal suits of armor, of course.</p><br/>
 
                 <p style={textStyle2}>Rebecca van Loenen:<br/>
                 - Imagine an American Ninja Warrior of the crafting world and you get Rebecca. Rebecca also practices the fine art of 'adulting' by offering

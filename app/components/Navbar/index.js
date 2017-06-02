@@ -20,7 +20,11 @@ class Navbar extends React.PureComponent {
     this.state = {
       menuOpen:false,
       token:sessionStorage.getItem("token"),
-      user:JSON.parse(sessionStorage.getItem("user"))
+      user:JSON.parse(sessionStorage.getItem("user")),
+      open: false,
+      username:"",
+      email:"",
+      password:"",
     }
   }
 
@@ -75,13 +79,127 @@ class Navbar extends React.PureComponent {
           <Link style={linkStyle2} to= "/About"> About </Link>
           <Link style={linkStyle2} to= "/Shop"> Shop </Link>
           <Link style={linkStyle2} to= "/Contact"> Contact </Link>
-          <Link style={linkStyle2} to= "/Login"> Login </Link>
+          <span style={linkStyle2} onTouchTap={this.handleOpen}> Login </span>
           {dashLink}
         </nav>
       )
     }
   }
 
+
+  handleOpen = () => {
+    this.setState({open: true});
+  };
+
+  handleClose = () => {
+    this.setState({open: false});
+  };
+
+handleUsername = (event) => {
+  this.setState({
+    username: event.target.value
+  })
+}
+handleEmail = (event) => {
+  this.setState({
+    email: event.target.value
+  })
+}
+handlePassword = (event) => {
+  this.setState({
+    password:event.target.value
+  })
+}
+
+   storeSignUp = () => {
+
+     var data = new FormData ();
+     data.append("username",this.state.username)
+     data.append("email", this.state.email);
+     data.append("password", this.state.password);
+
+ fetch("",{
+   method:"post",
+   body:data
+ })
+ .then(function(response){
+   return response.json();
+ })
+ .then(function(json){
+   if(json.token !== false){
+     this.setState({
+       username:"",
+       email:"",
+       password:"",
+     })
+
+     sessionStorage.setItem("token", json.token);
+     fetch(""+json.token, {
+       headers:{
+         "Authorization":"Bearer "+json.token
+       }
+     })
+     .then(function(response){
+       return response.json();
+     })
+     .then(function(json){
+       sessionStorage.setItem("user", JSON.stringify(json));
+       alert("Success! You did it!");
+     })
+
+   }
+   else if (json.token === false){
+     alert("Invalid credentials");
+   }
+   else if (json.error){
+     alert("You need to fill out all fields.");
+   }
+ }.bind(this))
+}
+
+    storeSignIn = () => {
+
+      var data = new FormData ();
+      data.append("email", this.state.email);
+      data.append("password", this.state.password);
+
+    fetch("",{
+    method:"post",
+    body:data
+    })
+    .then(function(response){
+    return response.json();
+    })
+    .then(function(json){
+    if(json.token !== false){
+      this.setState({
+        email:"",
+        password:"",
+      })
+
+      sessionStorage.setItem("token", json.token);
+      fetch(""+json.token, {
+        headers:{
+          "Authorization":"Bearer "+json.token
+        }
+      })
+      .then(function(response){
+        return response.json();
+      })
+      .then(function(json){
+        sessionStorage.setItem("user", JSON.stringify(json));
+        alert("Success! You did it!");
+      })
+
+    }
+    else if (json.token === false){
+      alert("Invalid credentials");
+    }
+    else if (json.error){
+      alert("You need to fill out all fields.");
+    }
+  }.bind(this))
+}
 
   render() {
 
@@ -154,6 +272,62 @@ class Navbar extends React.PureComponent {
         zIndex:"99999"
       }
 
+      const actions = [
+        <FlatButton
+          label="Cancel"
+          primary={true}
+          onTouchTap={this.handleClose}
+        />,
+        <FlatButton
+          label="Submit"
+          primary={true}
+          keyboardFocused={true}
+          onTouchTap={this.handleClose}
+        />,
+      ];
+
+      const dialogStyle={
+        width:"300px",
+        height:"300px",
+        background:"#ffffff",
+        display:"flex",
+        flexDirection:"column",
+        alignItems:"center",
+        color:"rgba(245, 128, 34, 1.00)",
+        fontSize:"1em",
+        fontFamily:"Oswald",
+        fontStyle:"light",
+        fontWeight:"500",
+        textAlign:"center",
+      }
+
+      const inputBox={
+        width:"280px",
+        height:"40px",
+        color:"rgba(245, 128, 34, 1.00)",
+        fontSize:"1em",
+        fontFamily:"Open Sans",
+        fontWeight:"400",
+        textAlign:"left",
+        marginTop:"10px",
+        marginBottom:"20px",
+        background:"#ffffff"
+      }
+
+      const buttonBox={
+        width:"280px",
+        height:"40px",
+        color:"#ffffff",
+        fontSize:"1em",
+        fontFamily:"Open Sans",
+        fontWeight:"400",
+        textAlign:"left",
+        marginTop:"20px",
+        marginBottom:"30px",
+        background:"rgba(245, 128, 34, 1.00)"
+
+      }
+
       var dashLink = <Link style={linkStyle2} to="/Dashboard">Dashboard</Link>;
 
       if(this.state.token === null){
@@ -177,13 +351,24 @@ class Navbar extends React.PureComponent {
                 <Link style={linkStyle2} to= "/About"> About </Link>
                 <Link style={linkStyle2} to= "/Shop"> Shop </Link>
                 <Link style={linkStyle2} to= "/Contact"> Contact </Link>
-                <Link style={linkStyle2} to= "/Login"> Login </Link>
+                <span style={linkStyle2} onTouchTap={this.handleOpen}> Login </span>
                 {dashLink}
               </nav>
             </div>
           </div>
         </div>
         </Responsive>
+
+        <Dialog
+          title="Login - Sign In / Sign Up"
+          actions={actions}
+          modal={false}
+          open={this.state.open}
+          onRequestClose={this.handleClose}
+          
+        >
+
+        </Dialog>
       </div>
     );
   }
