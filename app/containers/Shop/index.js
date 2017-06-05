@@ -34,7 +34,7 @@ export default class Shop extends React.PureComponent {
     })
   }
 
-    storeContact = () => {
+    storeEmail = () => {
       var data = new FormData ();
       data.append("email", this.state.email);
 
@@ -133,7 +133,7 @@ export default class Shop extends React.PureComponent {
 
     const divStyle6={
       width:"100%",
-      height:"300px",
+      height:"auto",
       display:"flex",
       flexDirection:"column",
       alignItems:"center",
@@ -143,7 +143,7 @@ export default class Shop extends React.PureComponent {
 
     const divStyle6Mobile={
       width:"100%",
-      height:"300px",
+      height:"auto",
       display:"flex",
       flexDirection:"column",
       alignItems:"center",
@@ -342,7 +342,7 @@ export default class Shop extends React.PureComponent {
             }}>
             <div style={contactLeft}>
                 <label style={textStyle}>SUBSCRIBE FOR UPDATES<input type="text" style={inputBox} value={this.state.email} placeholder=" Email Address"/> </label>
-                <input onTouchTap = {this.storeContact} type="submit" placeholder="Send Message" style={buttonBox2}/>
+                <input onTouchTap = {this.storeEmail} type="submit" placeholder="Send Message" style={buttonBox2}/>
 
                 &copy; 2017<script>new Date().getFullYear()>2017&&document.write("-"+new Date().getFullYear());</script>, Recycle Bin.<br/>Proudly designed by <a href="http://cb-iii.com">Charlie Bradley III</a> and Rebecca Van Loenen
             </div>
@@ -357,7 +357,7 @@ export default class Shop extends React.PureComponent {
               }}>
               <div style={contactLeft}>
                   <label style={textStyle}>SUBSCRIBE FOR UPDATES<input type="text" style={inputBox} value={this.state.email} placeholder=" Email Address"/> </label>
-                  <input onTouchTap = {this.storeContact} type="submit" placeholder="Send Message" style={buttonBox2}/>
+                  <input onTouchTap = {this.storeEmail} type="submit" placeholder="Send Message" style={buttonBox2}/>
 
                   &copy; 2017<script>new Date().getFullYear()>2017&&document.write("-"+new Date().getFullYear());</script>, Sumo Robot League.<br/>Proudly designed by <a href="http://cb-iii.com">Charlie Bradley III</a> Rebecca Van Loenen
               </div>

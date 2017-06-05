@@ -25,20 +25,49 @@ export default class Contact extends React.PureComponent {
   constructor(props){
     super(props);
     this.state={
+      name:"",
       email:"",
+      number:"",
+      website:"",
+      message:"",
     }
+  }
+  handleName = (event) => {
+    this.setState({
+      name: event.target.value
+    })
   }
   handleEmail = (event) => {
     this.setState({
       email:event.target.value
     })
   }
+  handleNumber = (event) => {
+    this.setState({
+      number: event.target.value
+    })
+  }
+  handleWebsite = (event) => {
+    this.setState({
+      website:event.target.value
+    })
+  }
+handleMessage = (event) => {
+  this.setState({
+    message: event.target.value
+  })
+}
+
 
     storeContact = () => {
       var data = new FormData ();
+      data.append("name", this.state.name);
       data.append("email", this.state.email);
+      data.append("number", this.state.number);
+      data.append("website", this.state.website);
+      data.append("message", this.state.message);
 
-    fetch("http://localhost:8000/api/storeEmail",{
+    fetch("http://localhost8000/api/storeContact",{
       method:"post",
       body:data
     })
@@ -48,7 +77,11 @@ export default class Contact extends React.PureComponent {
     .then(function(json){
       if(json.success){
         this.setState({
+          name:"",
           email:"",
+          number:"",
+          website:"",
+          message:"",
         })
         alert(json.success);
       }
@@ -58,6 +91,36 @@ export default class Contact extends React.PureComponent {
       }
     }.bind(this))
   }
+
+  storeEmail = () => {
+    var data = new FormData ();
+
+    data.append("email", this.state.email);
+
+  fetch("http://localhost8000/api/storeEmail",{
+    method:"post",
+    body:data
+  })
+  .then(function(response){
+    return response.json();
+  })
+  .then(function(json){
+    if(json.success){
+      this.setState({
+        name:"",
+        email:"",
+        number:"",
+        website:"",
+        message:"",
+      })
+      alert(json.success);
+    }
+
+    else if (json.error){
+      alert(json.error);
+    }
+  }.bind(this))
+}
 
   render() {
     const divStyleMain={
@@ -133,7 +196,7 @@ export default class Contact extends React.PureComponent {
 
     const divStyle6={
       width:"100%",
-      height:"300px",
+      height:"auto",
       display:"flex",
       flexDirection:"column",
       alignItems:"center",
@@ -143,7 +206,7 @@ export default class Contact extends React.PureComponent {
 
     const divStyle6Mobile={
       width:"100%",
-      height:"300px",
+      height:"auto",
       display:"flex",
       flexDirection:"column",
       alignItems:"center",
@@ -160,10 +223,27 @@ export default class Contact extends React.PureComponent {
       width:"285px",
       height:"30px",
       border:"2px solid rgba(255, 255, 255, 1.00)",
-      marginTop:"10px",
-      marginBottom:"10px",
-      marginRight:"30px",
-      background:"rgba(189, 190, 192, 1.00)"
+      margin:"0 auto",
+      marginTop:"20px",
+      marginBottom:"20px",
+      background:"rgba(189, 190, 192, 1.00)",
+
+    }
+
+    const inputBox2={
+      color:"rgba(255, 255, 255, 1.00)",
+      fontSize:"1em",
+      fontFamily:"Open Sans",
+      fontWeight:"400",
+      textAlign:"left",
+      width:"285px",
+      height:"285px",
+      margin:"0 auto",
+      marginTop:"20px",
+      marginBottom:"20px",
+      background:"rgba(189, 190, 192, 1.00)",
+      border:"2px solid rgba(255, 255, 255, 1.00)",
+      margin:"0 auto",
     }
 
     const contactLeft={
@@ -202,12 +282,14 @@ export default class Contact extends React.PureComponent {
       paddingTop:"5px",
       width:"150px",
       height:"40px",
+      margin:"0 auto",
       marginTop:"10px",
       marginBottom:"50px",
       background:"rgba(189, 190, 192, 1.00)",
       border:"2px solid rgba(109, 110, 114, 1.00)",
       display:"flex",
       justifyContent:"center",
+
     }
 
     const textStyle={
@@ -266,6 +348,14 @@ export default class Contact extends React.PureComponent {
         alignSelf:"center",
       }
 
+      const contactRowMobile={
+        display:"flex",
+        flexDirection:"row",
+        justifyContent:"space-around",
+        paddingTop:"5px",
+        margin:"0 auto",
+      }
+
     return (
       <div style={divStyleMain}>
         <Helmet title="Contact" meta={[ { name: 'description', content: 'Description of Contact' }]}/>
@@ -305,11 +395,22 @@ export default class Contact extends React.PureComponent {
             <div style={{maxWidth:"900px", margin:"0 auto", marginTop:"30px", marginBottom:"30px"}}>
               <div style={headerStyle2}>Contact</div>
               <img style={logoStyle} src="http://h4z.it/Image/edf6d5__bin_logo_sm.png"/>
-              <div style={textStyle}>
-                Recycle Bin is a subscription box service you can subscribe to from 2nd and Charles.
-                Simply pick your categories of interest and desired subscription model and we ship goodies
-                from our store to your door that match your interest. From books, comics, figurines and t-shirts
-                to pre-owned vinyl records, DVDs, BluRays and video games, we have your interest covered! </div>
+
+                <div style={contactRowMobile}>
+                  <label style={textStyle}><input onChange = {this.handleName} type="text" style={inputBox} value={this.state.name} placeholder="Name"/> </label>
+                  </div>
+                  <div style={contactRowMobile}>
+                  <label style={textStyle}><input onChange = {this.handleEmail} type="email" style={inputBox} value={this.state.email} placeholder="Email Address"/> </label>
+                </div>
+                <div style={contactRowMobile}>
+                  <label style={textStyle}><input onChange = {this.handleNumber} type="number" style={inputBox} value={this.state.number} placeholder="Phone Number"/> </label>
+                  </div>
+                <div style={contactRowMobile}>
+                  <label style={textStyle}><textarea onChange = {this.handleMessage} type="text" style={inputBox2} placeholder="Your Message">{this.state.message}</textarea> </label>
+                </div>
+                <div style={{margin:"0 auto"}}>
+                  <input onTouchTap = {this.storeContact} type="submit" placeholder="Send Message" style={buttonBox2}/>
+               </div>
               </div>
             </div>
           </Responsive>
@@ -342,7 +443,7 @@ export default class Contact extends React.PureComponent {
             }}>
             <div style={contactLeft}>
                 <label style={textStyle}>SUBSCRIBE FOR UPDATES<input type="text" style={inputBox} value={this.state.email} placeholder=" Email Address"/> </label>
-                <input onTouchTap = {this.storeContact} type="submit" placeholder="Send Message" style={buttonBox2}/>
+                <input onTouchTap = {this.storeEmail} type="submit" placeholder="Send Message" style={buttonBox2}/>
 
                 &copy; 2017<script>new Date().getFullYear()>2017&&document.write("-"+new Date().getFullYear());</script>, Recycle Bin.<br/>Proudly designed by <a href="http://cb-iii.com">Charlie Bradley III</a> and Rebecca Van Loenen
             </div>
@@ -357,7 +458,7 @@ export default class Contact extends React.PureComponent {
               }}>
               <div style={contactLeft}>
                   <label style={textStyle}>SUBSCRIBE FOR UPDATES<input type="text" style={inputBox} value={this.state.email} placeholder=" Email Address"/> </label>
-                  <input onTouchTap = {this.storeContact} type="submit" placeholder="Send Message" style={buttonBox2}/>
+                  <input onTouchTap = {this.storeEmail} type="submit" placeholder="Send Message" style={buttonBox2}/>
 
                   &copy; 2017<script>new Date().getFullYear()>2017&&document.write("-"+new Date().getFullYear());</script>, Sumo Robot League.<br/>Proudly designed by <a href="http://cb-iii.com">Charlie Bradley III</a> Rebecca Van Loenen
               </div>
