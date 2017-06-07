@@ -19,6 +19,7 @@ import FaFacebook from 'react-icons/lib/fa/facebook';
 import FaTwitter from 'react-icons/lib/fa/twitter';
 import FaYoutubePlay from 'react-icons/lib/fa/youtube-play';
 import FaInstagram from 'react-icons/lib/fa/instagram';
+import { ReactRpg } from 'react-rpg';
 
 
 export default class Home extends React.PureComponent {
@@ -259,6 +260,33 @@ export default class Home extends React.PureComponent {
         alignSelf:"center",
       }
 
+      const images = [
+      {
+        url: "http://h4z.it/Image/0981ee_1866_960_720.jpg",
+        clickHandler: (url, obj) => { console.log(url) }
+      },
+      {
+        url: "http://h4z.it/Image/b14f73_pika.jpg",
+        clickHandler: (url, obj) => { console.log(url) }
+      },
+      {
+        url: "http://h4z.it/Image/520872_inception2.jpg",
+        clickHandler: (url, obj) => { console.log(url) }
+      },
+      {
+        url: "http://h4z.it/Image/8a28be_Mario_tshirt.jpg",
+        clickHandler: (url, obj) => { console.log(url) }
+      },
+      {
+        url: "http://h4z.it/Image/de22c7_op-figures-1.jpg",
+        clickHandler: (url, obj) => { console.log(url) }
+      },
+      {
+        url: "http://h4z.it/Image/e9b54c_ypotterscarf.jpg",
+        clickHandler: (url, obj) => { console.log(url) }
+      },
+    ];
+
     return (
       <div style={divStyleMain}>
         <Helmet title="Home" meta={[ { name: 'description', content: 'Description of Home' }]}/>
@@ -325,38 +353,7 @@ export default class Home extends React.PureComponent {
                 <div style={headerStyle2}>Just a few examples of what you can find your</div>
                 <img style={logoStyle} src="http://h4z.it/Image/edf6d5__bin_logo_sm.png"/>
 
-          <Grid style={{width:"900px"}}>
-            <Row style={{display:"flex", flexDirection:"row", justifyContent:"center"}}>
-              <Col xs={6} md={3}>
-              <Thumbnail href="#" alt="171x180" src="http://h4z.it/Image/174c0b_1866_960_720.jpg" />
-              </Col>
-              <Col xs={6} md={3}>
-              <Thumbnail href="#" alt="171x180" src="http://h4z.it/Image/cb5d87_M-Size-Plush.jpg" />
-              </Col>
-            </Row>
-          </Grid>
-
-          <Grid>
-            <Row>
-              <Col xs={6} md={3}>
-              <Thumbnail href="#" alt="171x180" src="http://h4z.it/Image/fc5f98_inception.jpg" />
-              </Col>
-              <Col xs={6} md={3}>
-              <Thumbnail href="#" alt="171x180" src="http://h4z.it/Image/8a28be_Mario_tshirt.jpg" />
-              </Col>
-            </Row>
-          </Grid>
-
-          <Grid>
-            <Row>
-              <Col xs={6} md={3}>
-              <Thumbnail href="#" alt="171x180" src="http://h4z.it/Image/de22c7_op-figures-1.jpg" />
-              </Col>
-              <Col xs={6} md={3}>
-              <Thumbnail href="#" alt="171x180" src="http://h4z.it/Image/976e69_vinyl.jpg" />
-              </Col>
-            </Row>
-          </Grid>
+                 <ReactRpg imagesArray={images} columns={[ 1, 2, ]} padding={10} />
 
           </div>
         </div>

@@ -120,7 +120,7 @@ handlePasswordSignUp = (event) => {
      data.append("email", this.state.emailSignUp);
      data.append("password", this.state.passwordSignUp);
 
- fetch("",{
+ fetch("http://localhost:8000/api/storeSignUp",{
    method:"post",
    body:data
  })
@@ -176,7 +176,7 @@ handlePasswordSignIn = (event) => {
       data.append("email", this.state.emailSignIn);
       data.append("password", this.state.passwordSignIn);
 
-    fetch("",{
+    fetch("http://localhost:8000/api/storeSignIn",{
     method:"post",
     body:data
     })

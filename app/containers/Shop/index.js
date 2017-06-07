@@ -19,6 +19,10 @@
  import FaTwitter from 'react-icons/lib/fa/twitter';
  import FaYoutubePlay from 'react-icons/lib/fa/youtube-play';
  import FaInstagram from 'react-icons/lib/fa/instagram';
+ import Checkbox from 'material-ui/Checkbox';
+ import Visibility from 'material-ui/svg-icons/action/visibility';
+ import VisibilityOff from 'material-ui/svg-icons/action/visibility-off';
+
 
 export default class Shop extends React.PureComponent {
 
@@ -101,7 +105,7 @@ export default class Shop extends React.PureComponent {
 
     const divStyle4={
       width:"900px",
-      height:"100px",
+      height:"auto",
       display:"flex",
       flexDirection:"column",
       alignItems:"center",
@@ -266,6 +270,24 @@ export default class Shop extends React.PureComponent {
         alignSelf:"center",
       }
 
+      const styles = {
+        block: {
+          maxWidth:"600px",
+        },
+        checkbox: {
+          marginBottom:"10px",
+          marginTop:"20px",
+        },
+      };
+
+      const checkboxRow={
+        width:"100%",
+        display:"flex",
+        flexDirection:"row",
+        justifyContent:"space-between",
+      }
+
+
     return (
       <div style={divStyleMain}>
         <Helmet title="Shop" meta={[ { name: 'description', content: 'Description of Shop' }]}/>
@@ -305,13 +327,44 @@ export default class Shop extends React.PureComponent {
             <div style={{maxWidth:"900px", margin:"0 auto", marginTop:"30px", marginBottom:"30px"}}>
               <div style={headerStyle2}>Shop</div>
               <img style={logoStyle} src="http://h4z.it/Image/edf6d5__bin_logo_sm.png"/>
-              <div style={textStyle}>
+              <div style={textStyle2}>
                 Recycle Bin is a subscription box service you can subscribe to from 2nd and Charles.
                 Simply pick your categories of interest and desired subscription model and we ship goodies
                 from our store to your door that match your interest. From books, comics, figurines and t-shirts
                 to pre-owned vinyl records, DVDs, BluRays and video games, we have your interest covered! </div>
               </div>
             </div>
+          </Responsive>
+
+          <Responsive minDeviceWidth={1024}>
+          <div style={divStyle4}>
+           <div style={headerStyle2}>Interest</div>
+            <div style={checkboxRow}>
+              <div style={styles.block}><Checkbox label="SciFi" style={styles.checkbox}/></div>
+              <div style={styles.block}><Checkbox label="Fantasy" style={styles.checkbox}/></div>
+              <div style={styles.block}><Checkbox label="Mystery" style={styles.checkbox}/></div>
+           </div>
+           <div style={checkboxRow}>
+             <div style={styles.block}><Checkbox label="Romance" style={styles.checkbox}/></div>
+             <div style={styles.block}><Checkbox label="Cooking" style={styles.checkbox}/></div>
+             <div style={styles.block}><Checkbox label="Drama" style={styles.checkbox}/></div>
+            </div>
+            <div style={checkboxRow}>
+              <div style={styles.block}><Checkbox label="Horror" style={styles.checkbox}/></div>
+              <div style={styles.block}><Checkbox label="Self/Help" style={styles.checkbox}/></div>
+              <div style={styles.block}><Checkbox label="History" style={styles.checkbox}/></div>
+            </div>
+            <div style={checkboxRow}>
+              <div style={styles.block}><Checkbox label="Biographies" style={styles.checkbox}/></div>
+              <div style={styles.block}><Checkbox label="Poetry" style={styles.checkbox}/></div>
+              <div style={styles.block}><Checkbox label="Action/Adventure" style={styles.checkbox}/></div>
+            </div>
+            <div style={checkboxRow}>
+              <div style={styles.block}><Checkbox label="Comics" style={styles.checkbox}/></div>
+              <div style={styles.block}><Checkbox label="Spiritual/NewAge" style={styles.checkbox}/></div>
+              <div style={styles.block}><Checkbox label="Science" style={styles.checkbox}/></div>
+            </div>
+          </div>
           </Responsive>
 
       <Responsive minDeviceWidth={1024}>
