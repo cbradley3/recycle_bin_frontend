@@ -23,8 +23,10 @@ class Navbar extends React.PureComponent {
       user:JSON.parse(sessionStorage.getItem("user")),
       open: false,
       username:"",
-      email:"",
-      password:"",
+      emailSignIn:"",
+      passwordSignIn:"",
+      emailSignUp:"",
+      passwordSignUp:"",
     }
   }
 
@@ -100,14 +102,14 @@ handleUsername = (event) => {
     username: event.target.value
   })
 }
-handleEmail = (event) => {
+handleEmailSignUp = (event) => {
   this.setState({
-    email: event.target.value
+    emailSignUp: event.target.value
   })
 }
-handlePassword = (event) => {
+handlePasswordSignUp = (event) => {
   this.setState({
-    password:event.target.value
+    passwordSignUp:event.target.value
   })
 }
 
@@ -115,8 +117,8 @@ handlePassword = (event) => {
 
      var data = new FormData ();
      data.append("username",this.state.username)
-     data.append("email", this.state.email);
-     data.append("password", this.state.password);
+     data.append("email", this.state.emailSignUp);
+     data.append("password", this.state.passwordSignUp);
 
  fetch("",{
    method:"post",
@@ -129,8 +131,8 @@ handlePassword = (event) => {
    if(json.token !== false){
      this.setState({
        username:"",
-       email:"",
-       password:"",
+       emailSignUp:"",
+       passwordSignUp:"",
      })
 
      sessionStorage.setItem("token", json.token);
@@ -157,11 +159,22 @@ handlePassword = (event) => {
  }.bind(this))
 }
 
+handleEmailSignIn = (event) => {
+  this.setState({
+    emailSignIn: event.target.value
+  })
+}
+handlePasswordSignIn = (event) => {
+  this.setState({
+    passwordSignIn:event.target.value
+  })
+}
+
     storeSignIn = () => {
 
       var data = new FormData ();
-      data.append("email", this.state.email);
-      data.append("password", this.state.password);
+      data.append("email", this.state.emailSignIn);
+      data.append("password", this.state.passwordSignIn);
 
     fetch("",{
     method:"post",
@@ -173,8 +186,8 @@ handlePassword = (event) => {
     .then(function(json){
     if(json.token !== false){
       this.setState({
-        email:"",
-        password:"",
+        emailSignIn:"",
+        passwordSignIn:"",
       })
 
       sessionStorage.setItem("token", json.token);
@@ -301,6 +314,23 @@ handlePassword = (event) => {
         textAlign:"center",
       }
 
+      const dialogStyle2={
+        width:"300px",
+        height:"300px",
+        background:"#ffffff",
+        display:"flex",
+        flexDirection:"column",
+        alignItems:"center",
+        color:"rgba(245, 128, 34, 1.00)",
+        fontSize:"1em",
+        fontFamily:"Oswald",
+        fontStyle:"light",
+        fontWeight:"500",
+        textAlign:"center",
+        paddingTop:"10px",
+        paddingBottom:"10px",
+      }
+
       const inputBox={
         width:"280px",
         height:"40px",
@@ -309,8 +339,22 @@ handlePassword = (event) => {
         fontFamily:"Open Sans",
         fontWeight:"400",
         textAlign:"left",
-        marginTop:"10px",
-        marginBottom:"20px",
+        marginTop:"8px",
+        marginBottom:"21px",
+        background:"#ffffff"
+      }
+
+      const inputBox2={
+        width:"280px",
+        height:"40px",
+        color:"rgba(245, 128, 34, 1.00)",
+        fontSize:"1em",
+        fontFamily:"Open Sans",
+        fontWeight:"400",
+        textAlign:"left",
+        marginTop:"4px",
+        paddingTop:"4px",
+        paddingBottom:"4px",
         background:"#ffffff"
       }
 
@@ -321,12 +365,54 @@ handlePassword = (event) => {
         fontSize:"1em",
         fontFamily:"Open Sans",
         fontWeight:"400",
-        textAlign:"left",
-        marginTop:"20px",
-        marginBottom:"30px",
+        textAlign:"center",
+        marginTop:"17px",
         background:"rgba(245, 128, 34, 1.00)"
-
       }
+
+      const buttonBox2={
+        width:"280px",
+        height:"40px",
+        color:"#ffffff",
+        fontSize:"1em",
+        fontFamily:"Open Sans",
+        fontWeight:"400",
+        textAlign:"center",
+        marginTop:"3px",
+        background:"rgba(245, 128, 34, 1.00)"
+      }
+
+      const contactLeft={
+        width:"100%",
+        display:"flex",
+        flexDirection:"column",
+        paddingLeft:"3%",
+        paddingTop:"5%"
+      }
+
+      const contactRight={
+        width:"100%",
+        display:"flex",
+        flexDirection:"column",
+        alignItems:"right",
+        paddingLeft:"10%",
+        paddingTop:"5%"
+      }
+
+      const textStyle={
+        color:"rgba(245, 128, 34, 1.00)",
+        fontSize:"1.2em",
+        fontFamily:"Open Sans",
+        fontWeight:"300",
+        textAlign:"left",
+      }
+
+      const wrapper={
+        display:"flex",
+        flexDirection:"row",
+        justifyContent:"center",
+      }
+
 
       var dashLink = <Link style={linkStyle2} to="/Dashboard">Dashboard</Link>;
 
@@ -361,13 +447,42 @@ handlePassword = (event) => {
 
         <Dialog
           title="Login - Sign In / Sign Up"
-          actions={actions}
           modal={false}
           open={this.state.open}
-          onRequestClose={this.handleClose}
-          
-        >
+          onRequestClose={this.handleClose}>
+          <div style={wrapper}>
+            <div style={dialogStyle}>
+              <div style={contactLeft}>
+                <label style={textStyle}>Sign In<input onChange = {this.handleEmailSignIn} type="email" style={inputBox} value={this.state.emailSignIn} placeholder="Email Address"/> </label>
+              </div>
 
+              <div style={contactLeft}>
+                <label style={textStyle}><input onChange = {this.handlePasswordSignIn} style={inputBox} type="password" value={this.state.passwordSignIn} placeholder="password"/> </label>
+              </div>
+
+              <div style={contactLeft}>
+                <input onTouchTap = {this.storeSignIn} type="submit" value="Sign In" placeholder="Sign In" style={buttonBox}/>
+              </div>
+            </div>
+
+            <div style={dialogStyle}>
+              <div style={contactRight}>
+                <label style={textStyle}>Sign Up<input onChange = {this.handleUsername} type="username" style={inputBox2} value={this.state.username} placeholder="Username"/> </label>
+              </div>
+
+              <div style={contactRight}>
+                <label style={textStyle}><input onChange = {this.handleEmailSignUp} type="email" style={inputBox2} value={this.state.emailSignUp} placeholder="Email Address"/> </label>
+              </div>
+
+              <div style={contactRight}>
+                <label style={textStyle}><input onChange = {this.handlePasswordSignUp} style={inputBox2} type="password" value={this.state.passwordSignUp} placeholder="password"/> </label>
+              </div>
+
+              <div style={contactRight}>
+                <input onTouchTap = {this.storeSignUp} type="submit" value="Sign Up" placeholder="Sign Up" style={buttonBox2}/>
+              </div>
+            </div>
+          </div>
         </Dialog>
       </div>
     );
