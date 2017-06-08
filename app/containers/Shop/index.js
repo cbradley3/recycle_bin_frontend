@@ -31,8 +31,38 @@ export default class Shop extends React.PureComponent {
     super(props);
     this.state={
       email:"",
+      categories:[]
     }
   }
+
+  handleCheckBox = (category) => {
+    var categories = this.state.categories;
+    var found = false;
+    var index = null;
+    for(var i = 0; i<categories.length;i++)
+    {
+      if(categories[i]===category)
+      {
+        found = true;
+        index = i;
+      }
+    }
+
+    if(found === true){
+      categories.splice(index,1);
+      this.setState({
+        categories:categories
+      })
+    }
+    else if(found === false)
+    {
+      categories.push(category);
+      this.setState({
+        categories:categories
+      })
+    }
+  }
+
   handleEmail = (event) => {
     this.setState({
       email:event.target.value
@@ -299,14 +329,17 @@ export default class Shop extends React.PureComponent {
 
       const styles={
         block: {
-          maxWidth:"600px",
+          width:"33%",
+          display:"flex",
+          flexDirection:"row",
+          alignItems:"center",
         },
         checkbox: {
           marginBottom:"10px",
           marginTop:"20px",
           display:"flex",
           flexDirection:"row",
-          alignItems:"left",
+          alignItems:"center",
         },
       };
 
@@ -314,8 +347,8 @@ export default class Shop extends React.PureComponent {
         width:"100%",
         display:"flex",
         flexDirection:"row",
-        justifyContent:"space-between",
-        alignItems:"left",
+        justifyContent:"center",
+        alignItems:"center",
       }
 
       const textFieldstyle={
@@ -376,62 +409,69 @@ export default class Shop extends React.PureComponent {
           <div style={divStyle4}>
            <div style={headerStyle2}>Interest</div>
             <div style={checkboxRow}>
-              <div style={styles.block}><Checkbox label="SciFi" style={styles.checkbox}/></div>
-              <div style={styles.block}><Checkbox label="Fantasy" style={styles.checkbox}/></div>
-              <div style={styles.block}><Checkbox label="Mystery" style={styles.checkbox}/></div>
+              <div style={styles.block}><Checkbox label="SciFi" style={styles.checkbox} onChange={()=>this.handleCheckBox("SciFi")}/></div>
+              <div style={styles.block}><Checkbox label="Fantasy" style={styles.checkbox}
+              onChange={()=>this.handleCheckBox("Fantasy")}/></div>
+              <div style={styles.block}><Checkbox label="Mystery" style={styles.checkbox}
+              onChange={()=>this.handleCheckBox("Mystery")}/></div>
            </div>
            <div style={checkboxRow}>
-             <div style={styles.block}><Checkbox label="Romance" style={styles.checkbox}/></div>
-             <div style={styles.block}><Checkbox label="Cooking" style={styles.checkbox}/></div>
-             <div style={styles.block}><Checkbox label="Drama" style={styles.checkbox}/></div>
+             <div style={styles.block}><Checkbox label="Romance" style={styles.checkbox}
+             onChange={()=>this.handleCheckBox("Romance")}/></div>
+             <div style={styles.block}><Checkbox label="Cooking" style={styles.checkbox}
+             onChange={()=>this.handleCheckBox("Cooking")}/></div>
+             <div style={styles.block}><Checkbox label="Drama" style={styles.checkbox}
+             onChange={()=>this.handleCheckBox("Drama")}/></div>
             </div>
             <div style={checkboxRow}>
-              <div style={styles.block}><Checkbox label="Horror" style={styles.checkbox}/></div>
-              <div style={styles.block}><Checkbox label="Self/Help" style={styles.checkbox}/></div>
-              <div style={styles.block}><Checkbox label="History" style={styles.checkbox}/></div>
+              <div style={styles.block}><Checkbox label="Horror" style={styles.checkbox}
+              onChange={()=>this.handleCheckBox("Horror")}/></div>
+              <div style={styles.block}><Checkbox label="Self/Help" style={styles.checkbox}
+              onChange={()=>this.handleCheckBox("Self/Help")}/></div>
+              <div style={styles.block}><Checkbox label="History" style={styles.checkbox} onChange={()=>this.handleCheckBox("History")}/></div>
             </div>
             <div style={checkboxRow}>
-              <div style={styles.block}><Checkbox label="Biographies" style={styles.checkbox}/></div>
-              <div style={styles.block}><Checkbox label="Poetry" style={styles.checkbox}/></div>
-              <div style={styles.block}><Checkbox label="Action/Adventure" style={styles.checkbox}/></div>
+              <div style={styles.block}><Checkbox label="Biographies" style={styles.checkbox} onChange={()=>this.handleCheckBox("Biographies")}/></div>
+              <div style={styles.block}><Checkbox label="Poetry" style={styles.checkbox} onChange={()=>this.handleCheckBox("Poetry")}/></div>
+              <div style={styles.block}><Checkbox label="Action/Adventure" style={styles.checkbox} onChange={()=>this.handleCheckBox("Action/Adventure")}/></div>
             </div>
             <div style={checkboxRow}>
-              <div style={styles.block}><Checkbox label="Comics" style={styles.checkbox}/></div>
-              <div style={styles.block}><Checkbox label="Spiritual/NewAge" style={styles.checkbox}/></div>
-              <div style={styles.block}><Checkbox label="Science" style={styles.checkbox}/></div>
+              <div style={styles.block}><Checkbox label="Comics" style={styles.checkbox} onChange={()=>this.handleCheckBox("Comics")}/></div>
+              <div style={styles.block}><Checkbox label="Spiritual/NewAge" style={styles.checkbox} onChange={()=>this.handleCheckBox("Spiritual/NewAge")}/></div>
+              <div style={styles.block}><Checkbox label="Science" style={styles.checkbox} onChange={()=>this.handleCheckBox("Science")}/></div>
             </div>
 
           <div style={headerStyle2}>Fandom</div>
            <div style={checkboxRow}>
-             <div style={styles.block}><Checkbox label="Marvel" style={styles.checkbox}/></div>
-             <div style={styles.block}><Checkbox label="DC" style={styles.checkbox}/></div>
-             <div style={styles.block}><Checkbox label="StarWars" style={styles.checkbox}/></div>
+             <div style={styles.block}><Checkbox label="Marvel" style={styles.checkbox} onChange={()=>this.handleCheckBox("Marvel")}/></div>
+             <div style={styles.block}><Checkbox label="DC" style={styles.checkbox} onChange={()=>this.handleCheckBox("DC")}/></div>
+             <div style={styles.block}><Checkbox label="StarWars" style={styles.checkbox} onChange={()=>this.handleCheckBox("StarWars")}/></div>
           </div>
           <div style={checkboxRow}>
-            <div style={styles.block}><Checkbox label="TheWalkingDead" style={styles.checkbox}/></div>
-            <div style={styles.block}><Checkbox label="TheXfiles" style={styles.checkbox}/></div>
-            <div style={styles.block}><Checkbox label="Transformers" style={styles.checkbox}/></div>
+            <div style={styles.block}><Checkbox label="TheWalkingDead" style={styles.checkbox} onChange={()=>this.handleCheckBox("TheWalkingDead")}/></div>
+            <div style={styles.block}><Checkbox label="TheXfiles" style={styles.checkbox} onChange={()=>this.handleCheckBox("TheXfiles")}/></div>
+            <div style={styles.block}><Checkbox label="Transformers" style={styles.checkbox} onChange={()=>this.handleCheckBox("Transformers")}/></div>
            </div>
            <div style={checkboxRow}>
-             <div style={styles.block}><Checkbox label="Pokemon" style={styles.checkbox}/></div>
-             <div style={styles.block}><Checkbox label="HarryPotter" style={styles.checkbox}/></div>
-             <div style={styles.block}><Checkbox label="StarTrek" style={styles.checkbox}/></div>
+             <div style={styles.block}><Checkbox label="Pokemon" style={styles.checkbox} onChange={()=>this.handleCheckBox("Pokemon")}/></div>
+             <div style={styles.block}><Checkbox label="HarryPotter" style={styles.checkbox} onChange={()=>this.handleCheckBox("HarryPotter")}/></div>
+             <div style={styles.block}><Checkbox label="StarTrek" style={styles.checkbox} onChange={()=>this.handleCheckBox("StarTrek")}/></div>
            </div>
            <div style={checkboxRow}>
-             <div style={styles.block}><Checkbox label="Disney" style={styles.checkbox}/></div>
-             <div style={styles.block}><Checkbox label="Halo" style={styles.checkbox}/></div>
-             <div style={styles.block}><Checkbox label="MarioBros" style={styles.checkbox}/></div>
+             <div style={styles.block}><Checkbox label="Disney" style={styles.checkbox} onChange={()=>this.handleCheckBox("Disney")}/></div>
+             <div style={styles.block}><Checkbox label="Halo" style={styles.checkbox} onChange={()=>this.handleCheckBox("Halo")}/></div>
+             <div style={styles.block}><Checkbox label="MarioBros" style={styles.checkbox} onChange={()=>this.handleCheckBox("MarioBros")}/></div>
            </div>
            <div style={checkboxRow}>
-             <div style={styles.block}><Checkbox label="GameOfThrones" style={styles.checkbox}/></div>
-             <div style={styles.block}><Checkbox label="Minecraft" style={styles.checkbox}/></div>
-             <div style={styles.block}><Checkbox label="DragonballZ" style={styles.checkbox}/></div>
+             <div style={styles.block}><Checkbox label="GameOfThrones" style={styles.checkbox} onChange={()=>this.handleCheckBox("GameOfThones")}/></div>
+             <div style={styles.block}><Checkbox label="Minecraft" style={styles.checkbox} onChange={()=>this.handleCheckBox("Minecraft")}/></div>
+             <div style={styles.block}><Checkbox label="DragonballZ" style={styles.checkbox} onChange={()=>this.handleCheckBox("DragonballZ")}/></div>
            </div>
 
          <div style={headerStyle2}>Recycle Bin</div>
           <div style={checkboxRow}>
-            <div style={styles.block}><Checkbox label="Basic" style={styles.checkbox}/></div>
-            <div style={styles.block}><Checkbox label="Plus" style={styles.checkbox}/></div>
+            <div style={styles.block}><Checkbox label="Basic" style={styles.checkbox} onChange={()=>this.handleCheckBox("Basic")}/></div>
+            <div style={styles.block}><Checkbox label="Plus" style={styles.checkbox} onChange={()=>this.handleCheckBox("Plus")}/></div>
          </div>
 
           <input onTouchTap = {this.storeSelection} type="submit" placeholder="Submit" style={buttonBox3}/>
