@@ -314,12 +314,12 @@ export default class About extends React.PureComponent {
 
                 <p style={textStyle2}>Our plans consist of:</p><br/>
 
-                <p style={textStyle2}>Level #1: AKA<br/>
+                <p style={textStyle2}>Level #1: Basic<br/>
                 - 2/3 items<br/>
                 - shipped monthly<br/>
                 - $15+shipping/handling</p><br/>
 
-                <p style={textStyle2}>Level #2: AKA<br/>
+              <p style={textStyle2}>Level #2: Plus<br/>
                 - 4/5 items<br/>
                 - shipped monthly<br/>
                 - $30+shipping/handling</p><br/>

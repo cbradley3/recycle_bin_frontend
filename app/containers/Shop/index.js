@@ -31,6 +31,11 @@ export default class Shop extends React.PureComponent {
     super(props);
     this.state={
       email:"",
+      firstName:"",
+      lastName:"",
+      streetAddress:"",
+      phoneNumber:"",
+      accountEmail:"",
       categories:[]
     }
   }
@@ -93,6 +98,83 @@ export default class Shop extends React.PureComponent {
       }
     }.bind(this))
   }
+
+  handleFirstName = (event) => {
+    this.setState({
+      firstName: event.target.value
+    })
+  }
+  handleLastName = (event) => {
+    this.setState({
+      lastName: event.target.value
+    })
+  }
+  handleStreetAddress = (event) => {
+    this.setState({
+      streetAddress: event.target.value
+    })
+  }
+  handlePhoneNumber = (event) => {
+    this.setState({
+      phoneNumber: event.target.value
+    })
+  }
+  handleAccountEmail = (event) => {
+    this.setState({
+      accountEmail: event.target.value
+    })
+  }
+
+    storeAccountInfo = () => {
+
+      var data = new FormData ();
+      data.append("firstName",this.state.firstName)
+      data.append("lastName", this.state.lastName);
+      data.append("streetAddress", this.state.streetAddress);
+      data.append("phoneNumber", this.state.phoneNumber);
+      data.append("accountEmail", this.state.accountEmail);
+      data.append("categories", JSON.stringify(this.state.categories));
+
+  fetch("http://localhost:8000/api/storeAccountInfo",{
+    method:"post",
+    body:data
+  })
+  .then(function(response){
+    return response.json();
+  })
+  .then(function(json){
+    if(json.token !== false){
+      this.setState({
+        firstName:"",
+        lastName:"",
+        streetAddress:"",
+        phoneNumber:"",
+        accountEmail:"",
+      })
+
+      sessionStorage.setItem("token", json.token);
+      fetch(""+json.token, {
+        headers:{
+          "Authorization":"Bearer "+json.token
+        }
+      })
+      .then(function(response){
+        return response.json();
+      })
+      .then(function(json){
+        sessionStorage.setItem("user", JSON.stringify(json));
+        alert("Success! You did it!");
+      })
+
+    }
+    else if (json.token === false){
+      alert("Invalid credentials");
+    }
+    else if (json.error){
+      alert("You need to fill out all fields.");
+    }
+  }.bind(this))
+}
 
   render() {
     const divStyleMain={
@@ -398,9 +480,23 @@ export default class Shop extends React.PureComponent {
               <img style={logoStyle} src="http://h4z.it/Image/edf6d5__bin_logo_sm.png"/>
               <div style={textStyle2}>
                 Recycle Bin is a subscription box service you can subscribe to from 2nd and Charles.
-                Simply pick your categories of interest and desired subscription model and we ship goodies
-                from our store to your door that match your interest. From books, comics, figurines and t-shirts
-                to pre-owned vinyl records, DVDs, BluRays and video games, we have your interest covered! </div>
+                Simply pick your categories of interest, your fandom and your desired subscription level and we ship goodies
+                from our store to your door!<br/>
+                From books, comics, figurines and t-shirts
+                to pre-owned vinyl records, DVDs, BluRays and video games, we have your interest covered!
+                You just select the level of plan commitment that fits your ultimate Recycle Bin desires.
+
+                <div>Our plans consist of:<br/></div>
+
+                Level #1: Basic<br/>
+                - 2/3 items<br/>
+                - shipped monthly<br/>
+                - $15+shipping/handling<br/>
+
+                Level #2: Plus<br/>
+                - 4/5 items<br/>
+                - shipped monthly<br/>
+                - $30+shipping/handling<br/></div>
               </div>
             </div>
           </Responsive>
@@ -474,8 +570,6 @@ export default class Shop extends React.PureComponent {
             <div style={styles.block}><Checkbox label="Plus" style={styles.checkbox} onChange={()=>this.handleCheckBox("Plus")}/></div>
          </div>
 
-          <input onTouchTap = {this.storeSelection} type="submit" placeholder="Submit" style={buttonBox3}/>
-
          </div>
         </Responsive>
 
@@ -483,19 +577,19 @@ export default class Shop extends React.PureComponent {
         <div style={divStyle5}>
          <div style={headerStyle2}>Account Info</div>
           <Paper zDepth={2}>
-            <TextField hintText="First name" style={textFieldstyle} underlineShow={false} />
+            <TextField onChange = {this.handleFirstName} hintText="First name" style={textFieldstyle} value={this.state.firstName} underlineShow={false} />
             <Divider />
-            <TextField hintText="Last name" style={textFieldstyle} underlineShow={false} />
+            <TextField onChange = {this.handlelastName} hintText="Last name" style={textFieldstyle} value={this.state.lastName} underlineShow={false} />
             <Divider />
-            <TextField hintText="Street address" style={textFieldstyle} underlineShow={false} />
+            <TextField onChange = {this.handleStreetAddress} hintText="Street address" style={textFieldstyle} value={this.state.streetAddress} underlineShow={false} />
             <Divider />
-            <TextField hintText="Phone Number" style={textFieldstyle} underlineShow={false} />
+            <TextField onChange = {this.handlePhoneNumber} hintText="Phone Number" style={textFieldstyle} value={this.state.phoneNumber} underlineShow={false} />
             <Divider />
-            <TextField hintText="Email address" style={textFieldstyle} underlineShow={false} />
+            <TextField onChange = {this.handleAccountEmail} hintText="Email address" style={textFieldstyle} value={this.state.accountEmail} underlineShow={false} />
             <Divider />
           </Paper>
 
-          <input onTouchTap = {this.storeSelection} type="submit" placeholder="Submit" style={buttonBox3}/>
+          <input onTouchTap = {this.storeAccountInfo} type="submit" placeholder="Submit" style={buttonBox3}/>
 
         </div>
         </Responsive>
