@@ -20,8 +20,9 @@
  import FaYoutubePlay from 'react-icons/lib/fa/youtube-play';
  import FaInstagram from 'react-icons/lib/fa/instagram';
  import Checkbox from 'material-ui/Checkbox';
- import Visibility from 'material-ui/svg-icons/action/visibility';
- import VisibilityOff from 'material-ui/svg-icons/action/visibility-off';
+ import Divider from 'material-ui/Divider';
+ import Paper from 'material-ui/Paper';
+ import TextField from 'material-ui/TextField';
 
 
 export default class Shop extends React.PureComponent {
@@ -116,26 +117,34 @@ export default class Shop extends React.PureComponent {
     }
 
     const divStyle5={
-      width:"100%",
-      height:"150px",
+      width:"900px",
+      height:"auto",
       display:"flex",
       flexDirection:"column",
       alignItems:"center",
-      justifyContent:"center",
-      background:"rgba(245, 128, 34, 1.00)",
-    }
-    const divStyle5Mobile={
-      width:"100%",
-      height:"150px",
-      display:"flex",
-      flexDirection:"column",
-      alignItems:"center",
-      justifyContent:"center",
-      background:"rgba(245, 128, 34, 1.00)",
-
+      background:"rgba(255, 255, 255, 1.00)",
     }
 
     const divStyle6={
+      width:"100%",
+      height:"150px",
+      display:"flex",
+      flexDirection:"column",
+      alignItems:"center",
+      justifyContent:"center",
+      background:"rgba(245, 128, 34, 1.00)",
+    }
+    const divStyle6Mobile={
+      width:"100%",
+      height:"150px",
+      display:"flex",
+      flexDirection:"column",
+      alignItems:"center",
+      justifyContent:"center",
+      background:"rgba(245, 128, 34, 1.00)",
+    }
+
+    const divStyle7={
       width:"100%",
       height:"auto",
       display:"flex",
@@ -145,7 +154,7 @@ export default class Shop extends React.PureComponent {
       background:"rgba(189, 190, 192, 1.00)",
     }
 
-    const divStyle6Mobile={
+    const divStyle7Mobile={
       width:"100%",
       height:"auto",
       display:"flex",
@@ -214,6 +223,24 @@ export default class Shop extends React.PureComponent {
       justifyContent:"center",
     }
 
+    const buttonBox3={
+      color:"rgba(255, 255, 255, 1.00)",
+      fontSize:"1.25em",
+      fontFamily:"Open Sans",
+      fontWeight:"400",
+      textAlign:"center center",
+      textTransform:"uppercase",
+      paddingTop:"5px",
+      width:"150px",
+      height:"40px",
+      marginTop:"10px",
+      marginBottom:"50px",
+      background:"rgba(245, 128, 34, 1.00)",
+      border:"2px solid rgba(245, 128, 34, 1.00)",
+      display:"flex",
+      justifyContent:"center",
+    }
+
     const textStyle={
       color:"rgba(255, 255, 255, 1.00)",
       fontSize:"1.2em",
@@ -270,13 +297,16 @@ export default class Shop extends React.PureComponent {
         alignSelf:"center",
       }
 
-      const styles = {
+      const styles={
         block: {
           maxWidth:"600px",
         },
         checkbox: {
           marginBottom:"10px",
           marginTop:"20px",
+          display:"flex",
+          flexDirection:"row",
+          alignItems:"left",
         },
       };
 
@@ -285,7 +315,13 @@ export default class Shop extends React.PureComponent {
         display:"flex",
         flexDirection:"row",
         justifyContent:"space-between",
+        alignItems:"left",
       }
+
+      const textFieldstyle={
+        marginLeft:"20px",
+        width:"860px"
+      };
 
 
     return (
@@ -364,11 +400,68 @@ export default class Shop extends React.PureComponent {
               <div style={styles.block}><Checkbox label="Spiritual/NewAge" style={styles.checkbox}/></div>
               <div style={styles.block}><Checkbox label="Science" style={styles.checkbox}/></div>
             </div>
+
+          <div style={headerStyle2}>Fandom</div>
+           <div style={checkboxRow}>
+             <div style={styles.block}><Checkbox label="Marvel" style={styles.checkbox}/></div>
+             <div style={styles.block}><Checkbox label="DC" style={styles.checkbox}/></div>
+             <div style={styles.block}><Checkbox label="StarWars" style={styles.checkbox}/></div>
           </div>
-          </Responsive>
+          <div style={checkboxRow}>
+            <div style={styles.block}><Checkbox label="TheWalkingDead" style={styles.checkbox}/></div>
+            <div style={styles.block}><Checkbox label="TheXfiles" style={styles.checkbox}/></div>
+            <div style={styles.block}><Checkbox label="Transformers" style={styles.checkbox}/></div>
+           </div>
+           <div style={checkboxRow}>
+             <div style={styles.block}><Checkbox label="Pokemon" style={styles.checkbox}/></div>
+             <div style={styles.block}><Checkbox label="HarryPotter" style={styles.checkbox}/></div>
+             <div style={styles.block}><Checkbox label="StarTrek" style={styles.checkbox}/></div>
+           </div>
+           <div style={checkboxRow}>
+             <div style={styles.block}><Checkbox label="Disney" style={styles.checkbox}/></div>
+             <div style={styles.block}><Checkbox label="Halo" style={styles.checkbox}/></div>
+             <div style={styles.block}><Checkbox label="MarioBros" style={styles.checkbox}/></div>
+           </div>
+           <div style={checkboxRow}>
+             <div style={styles.block}><Checkbox label="GameOfThrones" style={styles.checkbox}/></div>
+             <div style={styles.block}><Checkbox label="Minecraft" style={styles.checkbox}/></div>
+             <div style={styles.block}><Checkbox label="DragonballZ" style={styles.checkbox}/></div>
+           </div>
+
+         <div style={headerStyle2}>Recycle Bin</div>
+          <div style={checkboxRow}>
+            <div style={styles.block}><Checkbox label="Basic" style={styles.checkbox}/></div>
+            <div style={styles.block}><Checkbox label="Plus" style={styles.checkbox}/></div>
+         </div>
+
+          <input onTouchTap = {this.storeSelection} type="submit" placeholder="Submit" style={buttonBox3}/>
+
+         </div>
+        </Responsive>
+
+        <Responsive minDeviceWidth={1024}>
+        <div style={divStyle5}>
+         <div style={headerStyle2}>Account Info</div>
+          <Paper zDepth={2}>
+            <TextField hintText="First name" style={textFieldstyle} underlineShow={false} />
+            <Divider />
+            <TextField hintText="Last name" style={textFieldstyle} underlineShow={false} />
+            <Divider />
+            <TextField hintText="Street address" style={textFieldstyle} underlineShow={false} />
+            <Divider />
+            <TextField hintText="Phone Number" style={textFieldstyle} underlineShow={false} />
+            <Divider />
+            <TextField hintText="Email address" style={textFieldstyle} underlineShow={false} />
+            <Divider />
+          </Paper>
+
+          <input onTouchTap = {this.storeSelection} type="submit" placeholder="Submit" style={buttonBox3}/>
+
+        </div>
+        </Responsive>
 
       <Responsive minDeviceWidth={1024}>
-          <div style={divStyle5}>
+          <div style={divStyle6}>
             <div>
               <a style={iconStyle} href= "https://www.facebook.com/2ndandCharles/"><FaFacebook/></a>
               <a style={iconStyle} href= "https://twitter.com/2ndandcharles"><FaTwitter/></a>
@@ -379,7 +472,7 @@ export default class Shop extends React.PureComponent {
         </Responsive>
 
         <Responsive maxDeviceWidth={1023}>
-          <div style={divStyle5Mobile}>
+          <div style={divStyle6Mobile}>
             <div>
               <a style={iconStyleMobile} href= "https://www.facebook.com/2ndandCharles/"><FaFacebook/></a>
               <a style={iconStyleMobile} href= "https://twitter.com/2ndandcharles"><FaTwitter/></a>
@@ -390,7 +483,7 @@ export default class Shop extends React.PureComponent {
         </Responsive>
 
       <Responsive minDeviceWidth={1024}>
-          <div style={divStyle6}>
+          <div style={divStyle7}>
             <div style={{maxWidth:"320px", margin:"0 auto", marginTop:"30px", marginBottom:"30px",
             }}>
             <div style={contactLeft}>
@@ -404,8 +497,8 @@ export default class Shop extends React.PureComponent {
         </Responsive>
 
         <Responsive maxDeviceWidth={1023}>
-          <div style={divStyle6Mobile}>
-            <div style={divStyle6}>
+          <div style={divStyle7Mobile}>
+            <div style={divStyle7}>
               <div style={{maxWidth:"320px", margin:"0 auto", marginTop:"30px", marginBottom:"30px",
               }}>
               <div style={contactLeft}>
