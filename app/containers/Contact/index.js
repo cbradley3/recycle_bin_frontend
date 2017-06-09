@@ -395,6 +395,13 @@ handleMessage = (event) => {
             <div style={{maxWidth:"900px", margin:"0 auto", marginTop:"30px", marginBottom:"30px"}}>
               <div style={headerStyle2}>Contact</div>
               <img style={logoStyle} src="http://h4z.it/Image/edf6d5__bin_logo_sm.png"/>
+              <div style={textStyle2}>
+                Recycle Bin is a subscription box service you can subscribe to from 2nd and Charles.
+                Simply pick your categories of interest, your fandom and your desired subscription level and we ship goodies
+                from our store to your door!<br/>
+                If you wish to contact us with any questions or comments please fill out all of the fields below.<br/>
+                Thank you for choosing Recycle Bin from 2nd and Charles.<br/>
+                <br/></div>
 
                 <div style={contactRowMobile}>
                   <label style={textStyle}><input onChange = {this.handleName} type="text" style={inputBox} value={this.state.name} placeholder="Name"/> </label>

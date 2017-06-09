@@ -399,6 +399,17 @@ export default class Shop extends React.PureComponent {
         textAlign:"center"
         }
 
+        const headerStyle3={
+          textDecoration:"none",
+          color:"rgba(245, 128, 34, 1.00)",
+          fontSize:"2em",
+          fontFamily:"Oswald",
+          fontStyle:"light",
+          fontWeight:"500",
+          textAlign:"center",
+          marginTop:"50px",
+          }
+
       const logoStyle={
         margin:"0 auto",
         marginTop:"20px",
@@ -442,6 +453,8 @@ export default class Shop extends React.PureComponent {
         display:'flex',
         flexDirection:'row',
         justifyContent:"space-between",
+        marginLeft:"150px"
+
       }
 
 
@@ -490,15 +503,15 @@ export default class Shop extends React.PureComponent {
                 from our store to your door!<br/>
                 From books, comics, figurines and t-shirts
                 to pre-owned vinyl records, DVDs, BluRays and video games, we have your interest covered!
-                You just select the level of plan commitment that fits your ultimate Recycle Bin desires.
-
+                You just select the level of plan commitment that fits your ultimate Recycle Bin desires.<br/>
+                <br/>
                 Our plans consist of:<br/>
-
+                <br/>
                 Level #1: Basic<br/>
                 - 2/3 items<br/>
                 - shipped monthly<br/>
                 - $15+shipping/handling<br/>
-
+                <br/>
                 Level #2: Plus<br/>
                 - 4/5 items<br/>
                 - shipped monthly<br/>
@@ -509,7 +522,7 @@ export default class Shop extends React.PureComponent {
 
           <Responsive minDeviceWidth={1024}>
           <div style={divStyle4}>
-           <div style={headerStyle2}>Interest</div>
+           <div style={headerStyle3}>Interest</div>
            <div style={columnWrapper}>
             <div style={checkboxColumn}>
               <div style={styles.block}><Checkbox label="SciFi" style={styles.checkbox} onChange={()=>this.handleCheckBox("SciFi")}/></div>
@@ -517,6 +530,7 @@ export default class Shop extends React.PureComponent {
               <div style={styles.block}><Checkbox label="Mystery" style={styles.checkbox} onChange={()=>this.handleCheckBox("Mystery")}/></div>
               <div style={styles.block}><Checkbox label="Romance" style={styles.checkbox} onChange={()=>this.handleCheckBox("Romance")}/></div>
               <div style={styles.block}><Checkbox label="Cooking" style={styles.checkbox} onChange={()=>this.handleCheckBox("Cooking")}/></div>
+              <div style={styles.block}><Checkbox label="Thrillers" style={styles.checkbox} onChange={()=>this.handleCheckBox("Thrillers")}/></div>
            </div>
            <div style={checkboxColumn}>
               <div style={styles.block}><Checkbox label="Drama" style={styles.checkbox} onChange={()=>this.handleCheckBox("Drama")}/></div>
@@ -524,6 +538,7 @@ export default class Shop extends React.PureComponent {
               <div style={styles.block}><Checkbox label="Self/Help" style={styles.checkbox} onChange={()=>this.handleCheckBox("Self/Help")}/></div>
               <div style={styles.block}><Checkbox label="History" style={styles.checkbox} onChange={()=>this.handleCheckBox("History")}/></div>
               <div style={styles.block}><Checkbox label="Biographies" style={styles.checkbox} onChange={()=>this.handleCheckBox("Biographies")}/></div>
+              <div style={styles.block}><Checkbox label="Autobiographies" style={styles.checkbox} onChange={()=>this.handleCheckBox("Autobiographies")}/></div>
             </div>
             <div style={checkboxColumn}>
               <div style={styles.block}><Checkbox label="Poetry" style={styles.checkbox} onChange={()=>this.handleCheckBox("Poetry")}/></div>
@@ -531,36 +546,44 @@ export default class Shop extends React.PureComponent {
               <div style={styles.block}><Checkbox label="Comics" style={styles.checkbox} onChange={()=>this.handleCheckBox("Comics")}/></div>
               <div style={styles.block}><Checkbox label="Spiritual/NewAge" style={styles.checkbox} onChange={()=>this.handleCheckBox("Spiritual/NewAge")}/></div>
               <div style={styles.block}><Checkbox label="Science" style={styles.checkbox} onChange={()=>this.handleCheckBox("Science")}/></div>
+              <div style={styles.block}><Checkbox label="Technology" style={styles.checkbox} onChange={()=>this.handleCheckBox("Technology")}/></div>
             </div>
           </div>
 
-        <div style={headerStyle2}>Fandom</div>
-         <div style={checkboxColumn}>
-           <div style={styles.block}><Checkbox label="Marvel" style={styles.checkbox} onChange={()=>this.handleCheckBox("Marvel")}/></div>
-           <div style={styles.block}><Checkbox label="DC" style={styles.checkbox} onChange={()=>this.handleCheckBox("DC")}/></div>
-           <div style={styles.block}><Checkbox label="StarWars" style={styles.checkbox} onChange={()=>this.handleCheckBox("StarWars")}/></div>
-           <div style={styles.block}><Checkbox label="TheWalkingDead" style={styles.checkbox} onChange={()=>this.handleCheckBox("TheWalkingDead")}/></div>
-           <div style={styles.block}><Checkbox label="TheXfiles" style={styles.checkbox} onChange={()=>this.handleCheckBox("TheXfiles")}/></div>
-        </div>
-        <div style={checkboxColumn}>
-          <div style={styles.block}><Checkbox label="Transformers" style={styles.checkbox} onChange={()=>this.handleCheckBox("Transformers")}/></div>
-           <div style={styles.block}><Checkbox label="Pokemon" style={styles.checkbox} onChange={()=>this.handleCheckBox("Pokemon")}/></div>
-           <div style={styles.block}><Checkbox label="HarryPotter" style={styles.checkbox} onChange={()=>this.handleCheckBox("HarryPotter")}/></div>
-           <div style={styles.block}><Checkbox label="StarTrek" style={styles.checkbox} onChange={()=>this.handleCheckBox("StarTrek")}/></div>
-           <div style={styles.block}><Checkbox label="Disney" style={styles.checkbox} onChange={()=>this.handleCheckBox("Disney")}/></div>
-         </div>
-         <div style={checkboxColumn}>
-           <div style={styles.block}><Checkbox label="Halo" style={styles.checkbox} onChange={()=>this.handleCheckBox("Halo")}/></div>
-           <div style={styles.block}><Checkbox label="MarioBros" style={styles.checkbox} onChange={()=>this.handleCheckBox("MarioBros")}/></div>
-           <div style={styles.block}><Checkbox label="GameOfThrones" style={styles.checkbox} onChange={()=>this.handleCheckBox("GameOfThones")}/></div>
-           <div style={styles.block}><Checkbox label="Minecraft" style={styles.checkbox} onChange={()=>this.handleCheckBox("Minecraft")}/></div>
-           <div style={styles.block}><Checkbox label="DragonballZ" style={styles.checkbox} onChange={()=>this.handleCheckBox("DragonballZ")}/></div>
+        <div style={headerStyle3}>Fandom</div>
+          <div style={columnWrapper}>
+           <div style={checkboxColumn}>
+             <div style={styles.block}><Checkbox label="Marvel" style={styles.checkbox} onChange={()=>this.handleCheckBox("Marvel")}/></div>
+             <div style={styles.block}><Checkbox label="DC" style={styles.checkbox} onChange={()=>this.handleCheckBox("DC")}/></div>
+             <div style={styles.block}><Checkbox label="StarWars" style={styles.checkbox} onChange={()=>this.handleCheckBox("StarWars")}/></div>
+             <div style={styles.block}><Checkbox label="TheWalkingDead" style={styles.checkbox} onChange={()=>this.handleCheckBox("TheWalkingDead")}/></div>
+             <div style={styles.block}><Checkbox label="TheXfiles" style={styles.checkbox} onChange={()=>this.handleCheckBox("TheXfiles")}/></div>
+             <div style={styles.block}><Checkbox label="LordOfTheRings" style={styles.checkbox} onChange={()=>this.handleCheckBox("LordOfTheRings")}/></div>
+          </div>
+          <div style={checkboxColumn}>
+            <div style={styles.block}><Checkbox label="Transformers" style={styles.checkbox} onChange={()=>this.handleCheckBox("Transformers")}/></div>
+             <div style={styles.block}><Checkbox label="Pokemon" style={styles.checkbox} onChange={()=>this.handleCheckBox("Pokemon")}/></div>
+             <div style={styles.block}><Checkbox label="HarryPotter" style={styles.checkbox} onChange={()=>this.handleCheckBox("HarryPotter")}/></div>
+             <div style={styles.block}><Checkbox label="StarTrek" style={styles.checkbox} onChange={()=>this.handleCheckBox("StarTrek")}/></div>
+             <div style={styles.block}><Checkbox label="Disney" style={styles.checkbox} onChange={()=>this.handleCheckBox("Disney")}/></div>
+             <div style={styles.block}><Checkbox label="MyLittlePony" style={styles.checkbox} onChange={()=>this.handleCheckBox("MyLittlePony")}/></div>
+           </div>
+           <div style={checkboxColumn}>
+             <div style={styles.block}><Checkbox label="Halo" style={styles.checkbox} onChange={()=>this.handleCheckBox("Halo")}/></div>
+             <div style={styles.block}><Checkbox label="MarioBros" style={styles.checkbox} onChange={()=>this.handleCheckBox("MarioBros")}/></div>
+             <div style={styles.block}><Checkbox label="GameOfThrones" style={styles.checkbox} onChange={()=>this.handleCheckBox("GameOfThones")}/></div>
+             <div style={styles.block}><Checkbox label="Minecraft" style={styles.checkbox} onChange={()=>this.handleCheckBox("Minecraft")}/></div>
+             <div style={styles.block}><Checkbox label="DragonballZ" style={styles.checkbox} onChange={()=>this.handleCheckBox("DragonballZ")}/></div>
+             <div style={styles.block}><Checkbox label="TheMatrix" style={styles.checkbox} onChange={()=>this.handleCheckBox("TheMatrix")}/></div>
+           </div>
          </div>
 
-         <div style={headerStyle2}>Recycle Bin</div>
-          <div style={checkboxColumn}>
-            <div style={styles.block}><Checkbox label="Basic" style={styles.checkbox} onChange={()=>this.handleCheckBox("Basic")}/></div>
-            <div style={styles.block}><Checkbox label="Plus" style={styles.checkbox} onChange={()=>this.handleCheckBox("Plus")}/></div>
+         <div style={headerStyle3}>Recycle Bin</div>
+           <div style={columnWrapper}>
+            <div style={checkboxColumn}>
+              <div style={styles.block}><Checkbox label="Basic" style={styles.checkbox} onChange={()=>this.handleCheckBox("Basic")}/></div>
+              <div style={styles.block}><Checkbox label="Plus" style={styles.checkbox} onChange={()=>this.handleCheckBox("Plus")}/></div>
+           </div>
          </div>
 
          </div>
@@ -568,7 +591,7 @@ export default class Shop extends React.PureComponent {
 
         <Responsive minDeviceWidth={1024}>
         <div style={divStyle5}>
-         <div style={headerStyle2}>Account Info</div>
+         <div style={headerStyle3}>Account Info</div>
           <Paper zDepth={2}>
             <TextField onChange = {this.handleFirstName} hintText="First name" style={textFieldstyle} value={this.state.firstName} underlineShow={false} />
             <Divider />

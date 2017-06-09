@@ -147,6 +147,7 @@ handlePasswordSignUp = (event) => {
      .then(function(json){
        sessionStorage.setItem("user", JSON.stringify(json));
        alert("Success! You did it!");
+       this.handleClose();
      })
 
    }
@@ -202,6 +203,7 @@ handlePasswordSignIn = (event) => {
       .then(function(json){
         sessionStorage.setItem("user", JSON.stringify(json));
         alert("Success! You did it!");
+        this.handleClose();
       })
 
     }
