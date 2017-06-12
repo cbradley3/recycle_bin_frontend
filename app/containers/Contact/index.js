@@ -67,7 +67,7 @@ handleMessage = (event) => {
       data.append("website", this.state.website);
       data.append("message", this.state.message);
 
-    fetch("http://localhost8000/api/storeContact",{
+    fetch("http://rb.thathashimottoslife/api/storeContact",{
       method:"post",
       body:data
     })
@@ -97,7 +97,7 @@ handleMessage = (event) => {
 
     data.append("email", this.state.email);
 
-  fetch("http://localhost8000/api/storeEmail",{
+  fetch("http://rb.thathashimottoslife/api/storeEmail",{
     method:"post",
     body:data
   })

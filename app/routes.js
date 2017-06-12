@@ -55,6 +55,24 @@ export default function createRoutes() {
        },
      },
      {
+      path: '/UpdateShop',
+      name: 'UpdateShop',
+      getComponent(nextState, comMod) {
+        import('containers/UpdateShop')
+          .then(loadModule(comMod))
+          .catch(errorLoading);
+      },
+    },
+     {
+      path: '/Orders',
+      name: 'Orders',
+      getComponent(nextState, comMod) {
+        import('containers/Orders')
+          .then(loadModule(comMod))
+          .catch(errorLoading);
+      },
+    },
+     {
       path: '*',
       name: 'notfound',
       getComponent(nextState, comMod) {

@@ -39,7 +39,7 @@ export default class About extends React.PureComponent {
       var data = new FormData ();
       data.append("email", this.state.email);
 
-    fetch("http://localhost:8000/api/storeEmail",{
+    fetch("http://rb.thathashimottoslife/api/storeEmail",{
       method:"post",
       body:data
     })
@@ -310,7 +310,7 @@ export default class About extends React.PureComponent {
                 <p style={textStyle2}>Recycle Bin is the new way to get the awesomeness of  2nd & Charles shipped right to your door.
                 Yes, that's right, all of the glory that is contained in 2nd & Charles is boxed up on a monthly bases and lands in your mailbox.
                 Our Recycle Bin brains come together in a back room of our 2nd & Charles headquarters and select items of awesomeness to send your way.
-                You just select the level of plan commitment  that fits your ultimate Recycle Bin desires.</p>
+                You just select the level of plan commitment  that fits your ultimate Recycle Bin desires. If you love your subscription plan then great, if not, you can change your interests, fandom and level on our Shop page.</p>
 
                 <p style={textStyle2}>Our plans consist of:</p><br/>
 

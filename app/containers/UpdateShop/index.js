@@ -1,6 +1,6 @@
 /*
  *
- * Shop
+ * UpdateShop
  *
  */
 
@@ -99,84 +99,43 @@ export default class Shop extends React.PureComponent {
     }.bind(this))
   }
 
-  handleFirstName = (event) => {
-    this.setState({
-      firstName: event.target.value
-    })
-  }
-  handleLastName = (event) => {
-    this.setState({
-      lastName: event.target.value
-    })
-  }
-  handleStreetAddress = (event) => {
-    this.setState({
-      streetAddress: event.target.value
-    })
-  }
-  handlePhoneNumber = (event) => {
-    this.setState({
-      phoneNumber: event.target.value
-    })
-  }
-  handleAccountEmail = (event) => {
-    this.setState({
-      accountEmail: event.target.value
-    })
-  }
-
-    storeAccountInfo = () => {
-
-      var data = new FormData ();
-      data.append("firstName",this.state.firstName)
-      data.append("lastName", this.state.lastName);
-      data.append("streetAddress", this.state.streetAddress);
-      data.append("phoneNumber", this.state.phoneNumber);
-      data.append("accountEmail", this.state.accountEmail);
-      data.append("categories", JSON.stringify(this.state.categories));
-
-  fetch("http://rb.thathashimottoslife/api/storeAccountInfo",{
-    method:"post",
-    body:data
-  })
-  .then(function(response){
-    return response.json();
-  })
-  .then(function(json){
-    if(json.token !== false){
-      this.setState({
-        firstName:"",
-        lastName:"",
-        streetAddress:"",
-        phoneNumber:"",
-        accountEmail:"",
+  componentWillMount(){
+      fetch("http://rb.thathashimottoslife/api/getAccountInfo" + this.state.token,{
+        headers:{"Authorization":"Bearer "+this.state.token}
       })
-
-      sessionStorage.setItem("token", json.token);
-      fetch(""+json.token, {
-        headers:{
-          "Authorization":"Bearer "+json.token
-        }
-      })
-      .then(function(response){
-        return response.json();
+      .then(function(res){
+        return res.json()
       })
       .then(function(json){
-        sessionStorage.setItem("user", JSON.stringify(json));
-        alert("Success! You did it!");
-      })
+        this.setState({
+          orders:json
+        })
+      }.bind(this))
+    }
 
-    }
-    else if (json.token === false){
-      alert("Invalid credentials");
-    }
-    else if (json.error){
-      alert("You need to fill out all fields.");
-    }
-  }.bind(this))
-}
-
+    destroyOrder = (id) =>{
+    var _this = this;
+    fetch("http://rb.thathashimottoslif/api/destroyOrder/" + id + "?token=" + this.state.token, {
+      method: "post",
+      headers:{"Authorization":"Bearer "+this.state.token}
+    })
+    .then(function(res){
+      return res.json();
+    })
+    .then(function(json){
+      if(json.success)
+      {
+        alert(json.success);
+        window.location.reload();
+      }
+      else if(json.error)
+      {
+        alert(json.error);
+      }
+    })
+  }  
   render() {
+
     const divStyleMain={
       display:"flex",
       width:"100%",
@@ -618,6 +577,13 @@ export default class Shop extends React.PureComponent {
           </Paper>
 
           <input onTouchTap = {this.storeAccountInfo} type="submit" placeholder="Submit" style={buttonBox3}/>
+
+
+           <div style={textStyle2}>
+           If you decide that Recycle Bin is not right for you at this time,<br/> you my click the button below to cancel your subscription.</div>
+
+           <input onTouchTap={()=>this.destroyOrder(order.id)} type="submit" placeholder="Submit" style={buttonBox}/>
+
 
         </div>
         </Responsive>

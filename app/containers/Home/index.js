@@ -40,7 +40,7 @@ export default class Home extends React.PureComponent {
       var data = new FormData ();
       data.append("email", this.state.email);
 
-    fetch("http://localhost:8000/api/storeEmail",{
+    fetch("http://rb.thathashimottoslife/api/storeEmail",{
       method:"post",
       body:data
     })
