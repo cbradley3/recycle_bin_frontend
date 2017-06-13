@@ -50,7 +50,10 @@ class Navbar extends React.PureComponent {
     const nav={
       display:"flex",
       flexDirection:"column",
-      alignSelf:'center'
+      alignItems:"center",
+      justifyContent:"center",
+      alignSelf:'center',
+      margin:"0 auto"
       }
 
     const linkStyle={
@@ -65,7 +68,7 @@ class Navbar extends React.PureComponent {
 
     if(this.state.menuOpen == true)
     {
-      var dashLink = <Link style={linkStyle} to= "/Dashboard"> Dashboard </Link>;
+      var dashLink = <Link style={linkStyle} to= "/EditAccount"> EditAccount </Link>;
 
       if(this.state.token === null){
         dashLink="";
@@ -77,11 +80,11 @@ class Navbar extends React.PureComponent {
       }
       return(
         <nav style={nav}>
-          <Link style={linkStyle2} to= "/"> Home </Link>
-          <Link style={linkStyle2} to= "/About"> About </Link>
-          <Link style={linkStyle2} to= "/Shop"> Shop </Link>
-          <Link style={linkStyle2} to= "/Contact"> Contact </Link>
-          <span style={linkStyle2} onTouchTap={this.handleOpen}> Login </span>
+          <Link style={linkStyle} to= "/"> Home </Link>
+          <Link style={linkStyle} to= "/About"> About </Link>
+          <Link style={linkStyle} to= "/Shop"> Shop </Link>
+          <Link style={linkStyle} to= "/Contact"> Contact </Link>
+          <span style={linkStyle} onTouchTap={this.handleOpen}> Login </span>
           {dashLink}
         </nav>
       )
@@ -120,7 +123,7 @@ handlePasswordSignUp = (event) => {
      data.append("email", this.state.emailSignUp);
      data.append("password", this.state.passwordSignUp);
 
- fetch("http://localhost:8000/api/storeSignUp",{
+ fetch("http://rb.thathashimottoslife.com/api/storeSignUp",{
    method:"post",
    body:data
  })
@@ -128,27 +131,15 @@ handlePasswordSignUp = (event) => {
    return response.json();
  })
  .then(function(json){
-   if(json.token !== false){
+   if(json.success){
      this.setState({
        username:"",
        emailSignUp:"",
        passwordSignUp:"",
      })
-
-     sessionStorage.setItem("token", json.token);
-     fetch(""+json.token, {
-       headers:{
-         "Authorization":"Bearer "+json.token
-       }
-     })
-     .then(function(response){
-       return response.json();
-     })
-     .then(function(json){
-       sessionStorage.setItem("user", JSON.stringify(json));
        alert("Success! You did it!");
        this.handleClose();
-     })
+       this.context.router.push("/Shop");
 
    }
    else if (json.token === false){
@@ -177,7 +168,7 @@ handlePasswordSignIn = (event) => {
       data.append("email", this.state.emailSignIn);
       data.append("password", this.state.passwordSignIn);
 
-    fetch("http://localhost:8000/api/storeSignIn",{
+    fetch("http://rb.thathashimottoslife.com/api/storeSignIn",{
     method:"post",
     body:data
     })
@@ -192,7 +183,7 @@ handlePasswordSignIn = (event) => {
       })
 
       sessionStorage.setItem("token", json.token);
-      fetch(""+json.token, {
+      fetch("http://rb.thathashimottoslife.com/api/getUser?token"+json.token, {
         headers:{
           "Authorization":"Bearer "+json.token
         }
@@ -204,6 +195,7 @@ handlePasswordSignIn = (event) => {
         sessionStorage.setItem("user", JSON.stringify(json));
         alert("Success! You did it!");
         this.handleClose();
+        this.context.router.push("/UpdateShop");
       })
 
     }
@@ -260,6 +252,13 @@ handlePasswordSignIn = (event) => {
       width:"auto",
       marginRight:"75px",
     }
+    const logoStyle2={
+      margin:"0 auto",
+      marginTop:"20px",
+      height:"45px",
+      width:"auto",
+
+    }
     const linkStyle2={
       display:"flex",
       flexDirection:"row",
@@ -280,6 +279,19 @@ handlePasswordSignIn = (event) => {
         display:"flex",
         flexDirection:"row",
         justifyContent:"space-between",
+        position:"fixed",
+        top:"0",
+        left:"0",
+        background:"rgba(245, 128, 34, 1.00)",
+        zIndex:"99999"
+      }
+      const divStyle3Mobile={
+        width:"100%",
+        height:"auto",
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"center",
+        color:"rgba(255, 255, 255, 1.00)",
         position:"fixed",
         top:"0",
         left:"0",
@@ -447,6 +459,18 @@ handlePasswordSignIn = (event) => {
         </div>
         </Responsive>
 
+        <Responsive maxDeviceWidth={1023}>
+        <div style={divStyle3Mobile}>
+        <div style={{maxWidth:"300px", margin:"0 auto",}}>
+              <img style={logoStyle2} src="http://h4z.it/Image/bd3fd9_bin_logoW_sm.png"/>
+              <nav style={navStyle2}>
+                <IconButton onTouchTap={this.handleMenu}> <MenuIcon/> </IconButton>
+              </nav>
+              {this.showMenu()}
+        </div>
+        </div>
+        </Responsive>
+
         <Dialog
           title="Login - Sign In / Sign Up"
           modal={false}
@@ -492,3 +516,4 @@ handlePasswordSignIn = (event) => {
 }
 
 export default Navbar;
+Navbar.contextTypes={router:React.PropTypes.object}

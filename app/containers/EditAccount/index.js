@@ -77,7 +77,7 @@ export default class EditAccount extends React.PureComponent {
       var data = new FormData ();
       data.append("email", this.state.email);
 
-    fetch("http://rb.thathashimottoslife/api/storeEmail",{
+    fetch("http://rb.thathashimottoslife.com/api/storeEmail",{
       method:"post",
       body:data
     })
@@ -99,7 +99,7 @@ export default class EditAccount extends React.PureComponent {
   }
 
   componentWillMount(){
-      fetch("http://rb.thathashimottoslife/api/getAccountInfo" + this.state.token,{
+      fetch("http://rb.thathashimottoslife.com/api/getAccountInfo" + this.state.token,{
         headers:{"Authorization":"Bearer "+this.state.token}
       })
       .then(function(res){
@@ -114,7 +114,7 @@ export default class EditAccount extends React.PureComponent {
 
     destroyOrder = (id) =>{
     var _this = this;
-    fetch("http://rb.thathashimottoslif/api/destroyOrder/" + id + "?token=" + this.state.token, {
+    fetch("http://rb.thathashimottoslife.com/api/destroyOrder/" + id + "?token=" + this.state.token, {
       method: "post",
       headers:{"Authorization":"Bearer "+this.state.token}
     })
