@@ -64,10 +64,10 @@ export default function createRoutes() {
       },
     },
      {
-      path: '/Orders',
-      name: 'Orders',
+      path: '/EditAccount',
+      name: 'EditAccount',
       getComponent(nextState, comMod) {
-        import('containers/Orders')
+        import('containers/EditAccount')
           .then(loadModule(comMod))
           .catch(errorLoading);
       },

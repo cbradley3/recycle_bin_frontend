@@ -1,6 +1,6 @@
 /*
  *
- * UpdateShop
+ * EditAccount
  *
  */
 
@@ -24,8 +24,7 @@
  import Paper from 'material-ui/Paper';
  import TextField from 'material-ui/TextField';
 
-
-export default class UpdateShop extends React.PureComponent {
+export default class EditAccount extends React.PureComponent {
 
   constructor(props){
     super(props);
@@ -263,7 +262,7 @@ renderBoxes = (categoryList) => {
 
     const divStyle2={
       width:"900px",
-      height:"200px",
+      height:"auto",
       display:"flex",
       flexDirection:"column",
       alignItems:"center",
@@ -534,13 +533,11 @@ renderBoxes = (categoryList) => {
         flexDirection:'row',
         justifyContent:"space-between",
         marginLeft:"150px"
-
       }
-
 
     return (
       <div style={divStyleMain}>
-        <Helmet title="UpdateShop" meta={[ { name: 'description', content: 'Description of UpdateShop' }]}/>
+        <Helmet title="EditAccount" meta={[ { name: 'description', content: 'Description of EditAccount' }]}/>
 
         <header>
             <NavBar/>
@@ -573,33 +570,16 @@ renderBoxes = (categoryList) => {
       </div>
 
       <Responsive minDeviceWidth={1024}>
-          <div style={divStyle3}>
+          <div style={divStyle2}>
             <div style={{maxWidth:"900px", margin:"0 auto", marginTop:"30px", marginBottom:"30px"}}>
-              <div style={headerStyle2}>Shop</div>
-              <img style={logoStyle} src="http://h4z.it/Image/edf6d5__bin_logo_sm.png"/>
-              <div style={textStyle2}>
-                Recycle Bin is a subscription box service you can subscribe to from 2nd and Charles.
-                Simply pick your categories of interest, your fandom and your desired subscription level and we ship goodies
-                from our store to your door!<br/>
-                From books, comics, figurines and t-shirts
-                to pre-owned vinyl records, DVDs, BluRays and video games, we have your interest covered!
-                You just select the level of plan commitment that fits your ultimate Recycle Bin desires.
-                If you love your subscription plan then great, if not, you can change your interests, fandom and level here.<br/>
-                <br/>
-                Our plans consist of:<br/>
-                <br/>
-                Level #1: Basic<br/>
-                - 2/3 items<br/>
-                - shipped monthly<br/>
-                - $15+shipping/handling<br/>
-                <br/>
-                Level #2: Plus<br/>
-                - 4/5 items<br/>
-                - shipped monthly<br/>
-                - $30+shipping/handling<br/></div>
-              </div>
+              <div style={headerStyle}>Edit Account Info</div>
+                <img style={logoStyle} src="http://h4z.it/Image/bd3fd9_bin_logoW_sm.png"/>
+                <div style={{maxWidth:"320px", marginTop:"30px", marginBottom:"30px"}} style={contactLeft}>
+                  <label style={textStyle}>SEARCH FOR ACCOUNT<input type="text" style={inputBox} value={this.state.email} placeholder=" Email Address"/> </label>
+                  <input onTouchTap = {this.getAccountInfo} type="submit" placeholder="Send Message" style={buttonBox2}/></div>
             </div>
-          </Responsive>
+          </div>
+      </Responsive>
 
           <Responsive minDeviceWidth={1024}>
           <div style={divStyle4}>
@@ -659,7 +639,7 @@ renderBoxes = (categoryList) => {
 
 
            <div style={textStyle2}>
-           If you decide that Recycle Bin is not right for you at this time,<br/> you may click the button below to cancel your subscription.</div>
+           Click the buttton below to delete order.</div>
 
            <input onTouchTap={()=>this.destroyOrder(order.id)} type="submit" placeholder="Submit" style={buttonBox}/>
 
