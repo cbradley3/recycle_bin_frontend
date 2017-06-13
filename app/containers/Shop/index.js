@@ -78,7 +78,7 @@ export default class Shop extends React.PureComponent {
       var data = new FormData ();
       data.append("email", this.state.email);
 
-    fetch("http://rb.thathashimottoslife/api/storeEmail",{
+    fetch("http://rb.thathashimottoslife.com/api/storeEmail",{
       method:"post",
       body:data
     })
@@ -135,7 +135,7 @@ export default class Shop extends React.PureComponent {
       data.append("accountEmail", this.state.accountEmail);
       data.append("categories", JSON.stringify(this.state.categories));
 
-  fetch("http://rb.thathashimottoslife/api/storeAccountInfo",{
+  fetch("http://rb.thathashimottoslife.com/api/storeAccountInfo",{
     method:"post",
     body:data
   })
@@ -216,6 +216,18 @@ export default class Shop extends React.PureComponent {
       color:"rgba(245, 128, 34, 1.00)",
     }
 
+    const divStyle3Mobile={
+      width:"100%",
+      height:"auto",
+      display:"flex",
+      flexDirection:"column",
+      alignItems:"center",
+      paddingLeft:"10px",
+      paddingRight:"10px",
+      background:"rgba(255, 255, 255, 1.00)",
+      color:"rgba(245, 128, 34, 1.00)",
+    }
+
     const divStyle4={
       width:"900px",
       height:"auto",
@@ -228,8 +240,29 @@ export default class Shop extends React.PureComponent {
       color:"rgba(245, 128, 34, 1.00)",
     }
 
+    const divStyle4Mobile={
+      width:"100%",
+      height:"auto",
+      display:"flex",
+      flexDirection:"column",
+      alignItems:"center",
+      paddingLeft:"10px",
+      paddingRight:"10px",
+      background:"rgba(255, 255, 255, 1.00)",
+      color:"rgba(245, 128, 34, 1.00)",
+    }
+
     const divStyle5={
       width:"900px",
+      height:"auto",
+      display:"flex",
+      flexDirection:"column",
+      alignItems:"center",
+      background:"rgba(255, 255, 255, 1.00)",
+    }
+
+    const divStyle5Mobile={
+      width:"100%px",
       height:"auto",
       display:"flex",
       flexDirection:"column",
@@ -465,7 +498,23 @@ export default class Shop extends React.PureComponent {
         flexDirection:'row',
         justifyContent:"space-between",
         marginLeft:"150px"
+      }
 
+      const columnWrapperMobile={
+        width:"100px",
+        display:'flex',
+        flexDirection:'column',
+        margin:"0 auto"
+      }
+
+      const logoStyleMobile={
+        margin:"0 auto",
+        marginTop:"20px",
+        marginBottom:"20px",
+        height:"50px",
+        display:"flex",
+        flexDirection:"row",
+        alignSelf:"center",
       }
 
 
@@ -477,31 +526,61 @@ export default class Shop extends React.PureComponent {
             <NavBar/>
         </header>
 
-      <div style={divStyle1}>
-        <Carousel style={{maxWidth:"900px", margin:"0 auto", marginTop:"30px", marginBottom:"0px", border:"25px solid #ffffff"}}>
-          <Carousel.Item>
-            <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/ec3db1_RCB_box.jpg"/>
-            <Carousel.Caption>
-              <h3>The Recycle Bin</h3>
-              <p>From our store to your door.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/0449c9_s_Augusta_GA.jpg"/>
-            <Carousel.Caption>
-              <h3>The Recycle Bin</h3>
-              <p>From our store to your door.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/5b2386_ndCharles001.jpg"/>
-            <Carousel.Caption>
-              <h3>The Recycle Bin</h3>
-              <p>From our store to your door.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-        </Carousel>
-      </div>
+        <Responsive minDeviceWidth={1024}>
+          <div style={divStyle1}>
+            <Carousel style={{maxWidth:"900px", margin:"0 auto", marginTop:"30px", marginBottom:"0px", border:"25px solid #ffffff"}}>
+              <Carousel.Item>
+                <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/ec3db1_RCB_box.jpg"/>
+                <Carousel.Caption>
+                  <h3>The Recycle Bin</h3>
+                  <p>From our store to your door.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/0449c9_s_Augusta_GA.jpg"/>
+                <Carousel.Caption>
+                  <h3>The Recycle Bin</h3>
+                  <p>From our store to your door.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/5b2386_ndCharles001.jpg"/>
+                <Carousel.Caption>
+                  <h3>The Recycle Bin</h3>
+                  <p>From our store to your door.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+            </Carousel>
+          </div>
+        </Responsive>
+
+        <Responsive maxDeviceWidth={1023}>
+          <div style={divStyle1}>
+            <Carousel style={{maxWidth:"900px", margin:"0 auto", marginTop:"30px", marginBottom:"0px", border:"10px solid #ffffff"}}>
+              <Carousel.Item>
+                <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/ec3db1_RCB_box.jpg"/>
+                <Carousel.Caption>
+                  <h3>The Recycle Bin</h3>
+                  <p>From our store to your door.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/0449c9_s_Augusta_GA.jpg"/>
+                <Carousel.Caption>
+                  <h3>The Recycle Bin</h3>
+                  <p>From our store to your door.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/5b2386_ndCharles001.jpg"/>
+                <Carousel.Caption>
+                  <h3>The Recycle Bin</h3>
+                  <p>From our store to your door.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+            </Carousel>
+          </div>
+        </Responsive>
 
       <Responsive minDeviceWidth={1024}>
           <div style={divStyle3}>
@@ -531,6 +610,35 @@ export default class Shop extends React.PureComponent {
               </div>
             </div>
           </Responsive>
+
+          <Responsive maxDeviceWidth={1023}>
+              <div style={divStyle3Mobile}>
+                <div style={{maxWidth:"300px", margin:"0 auto", marginTop:"30px", marginBottom:"30px"}}>
+                  <div style={headerStyle2}>Shop</div>
+                  <img style={logoStyleMobile} src="http://h4z.it/Image/edf6d5__bin_logo_sm.png"/>
+                  <div style={textStyle2}>
+                    Recycle Bin is a subscription box service you can subscribe to from 2nd and Charles.
+                    Simply pick your categories of interest, your fandom and your desired subscription level and we ship goodies
+                    from our store to your door!<br/>
+                    From books, comics, figurines and t-shirts
+                    to pre-owned vinyl records, DVDs, BluRays and video games, we have your interest covered!
+                    You just select the level of plan commitment that fits your ultimate Recycle Bin desires.
+                    If you love your subscription plan then great, if not, you can change your interests, fandom and level here.<br/>
+                    <br/>
+                    Our plans consist of:<br/>
+                    <br/>
+                    Level #1: Basic<br/>
+                    - 2/3 items<br/>
+                    - shipped monthly<br/>
+                    - $15+shipping/handling<br/>
+                    <br/>
+                    Level #2: Plus<br/>
+                    - 4/5 items<br/>
+                    - shipped monthly<br/>
+                    - $30+shipping/handling<br/></div>
+                  </div>
+                </div>
+              </Responsive>
 
           <Responsive minDeviceWidth={1024}>
           <div style={divStyle4}>
@@ -601,6 +709,75 @@ export default class Shop extends React.PureComponent {
          </div>
         </Responsive>
 
+        <Responsive maxDeviceWidth={1023}>
+        <div style={divStyle4Mobile} style={{maxWidth:"300px", margin:"0 auto", marginTop:"30px", marginBottom:"30px"}}>
+         <div style={headerStyle3}>Interest</div>
+         <div style={columnWrapperMobile}>
+          <div style={checkboxColumn}>
+            <div style={styles.block}><Checkbox label="SciFi" style={styles.checkbox} onCheck={()=>this.handleCheckBox("SciFi")}/></div>
+            <div style={styles.block}><Checkbox label="Fantasy" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Fantasy")}/></div>
+            <div style={styles.block}><Checkbox label="Mystery" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Mystery")}/></div>
+            <div style={styles.block}><Checkbox label="Romance" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Romance")}/></div>
+            <div style={styles.block}><Checkbox label="Cooking" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Cooking")}/></div>
+            <div style={styles.block}><Checkbox label="Thrillers" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Thrillers")}/></div>
+         </div>
+         <div style={checkboxColumn}>
+            <div style={styles.block}><Checkbox label="Drama" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Drama")}/></div>
+            <div style={styles.block}><Checkbox label="Horror" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Horror")}/></div>
+            <div style={styles.block}><Checkbox label="Self/Help" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Self/Help")}/></div>
+            <div style={styles.block}><Checkbox label="History" style={styles.checkbox} onCheck={()=>this.handleCheckBox("History")}/></div>
+            <div style={styles.block}><Checkbox label="Biographies" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Biographies")}/></div>
+            <div style={styles.block}><Checkbox label="Autobiographies" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Autobiographies")}/></div>
+          </div>
+          <div style={checkboxColumn}>
+            <div style={styles.block}><Checkbox label="Poetry" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Poetry")}/></div>
+            <div style={styles.block}><Checkbox label="Action/Adventure" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Action/Adventure")}/></div>
+            <div style={styles.block}><Checkbox label="Comics" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Comics")}/></div>
+            <div style={styles.block}><Checkbox label="Spiritual/NewAge" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Spiritual/NewAge")}/></div>
+            <div style={styles.block}><Checkbox label="Science" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Science")}/></div>
+            <div style={styles.block}><Checkbox label="Technology" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Technology")}/></div>
+          </div>
+        </div>
+
+      <div style={headerStyle3}>Fandom</div>
+        <div style={columnWrapperMobile}>
+         <div style={checkboxColumn}>
+           <div style={styles.block}><Checkbox label="Marvel" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Marvel")}/></div>
+           <div style={styles.block}><Checkbox label="DC" style={styles.checkbox} onCheck={()=>this.handleCheckBox("DC")}/></div>
+           <div style={styles.block}><Checkbox label="StarWars" style={styles.checkbox} onCheck={()=>this.handleCheckBox("StarWars")}/></div>
+           <div style={styles.block}><Checkbox label="TheWalkingDead" style={styles.checkbox} onCheck={()=>this.handleCheckBox("TheWalkingDead")}/></div>
+           <div style={styles.block}><Checkbox label="TheXfiles" style={styles.checkbox} onCheck={()=>this.handleCheckBox("TheXfiles")}/></div>
+           <div style={styles.block}><Checkbox label="LordOfTheRings" style={styles.checkbox} onCheck={()=>this.handleCheckBox("LordOfTheRings")}/></div>
+        </div>
+        <div style={checkboxColumn}>
+          <div style={styles.block}><Checkbox label="Transformers" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Transformers")}/></div>
+           <div style={styles.block}><Checkbox label="Pokemon" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Pokemon")}/></div>
+           <div style={styles.block}><Checkbox label="HarryPotter" style={styles.checkbox} onCheck={()=>this.handleCheckBox("HarryPotter")}/></div>
+           <div style={styles.block}><Checkbox label="StarTrek" style={styles.checkbox} onCheck={()=>this.handleCheckBox("StarTrek")}/></div>
+           <div style={styles.block}><Checkbox label="Disney" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Disney")}/></div>
+           <div style={styles.block}><Checkbox label="MyLittlePony" style={styles.checkbox} onCheck={()=>this.handleCheckBox("MyLittlePony")}/></div>
+         </div>
+         <div style={checkboxColumn}>
+           <div style={styles.block}><Checkbox label="Halo" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Halo")}/></div>
+           <div style={styles.block}><Checkbox label="MarioBros" style={styles.checkbox} onCheck={()=>this.handleCheckBox("MarioBros")}/></div>
+           <div style={styles.block}><Checkbox label="GameOfThrones" style={styles.checkbox} onCheck={()=>this.handleCheckBox("GameOfThones")}/></div>
+           <div style={styles.block}><Checkbox label="Minecraft" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Minecraft")}/></div>
+           <div style={styles.block}><Checkbox label="DragonballZ" style={styles.checkbox} onCheck={()=>this.handleCheckBox("DragonballZ")}/></div>
+           <div style={styles.block}><Checkbox label="TheMatrix" style={styles.checkbox} onCheck={()=>this.handleCheckBox("TheMatrix")}/></div>
+         </div>
+       </div>
+
+       <div style={headerStyle3}>Recycle Bin</div>
+         <div style={columnWrapperMobile}>
+          <div style={checkboxColumn}>
+            <div style={styles.block}><Checkbox label="Basic" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Basic")}/></div>
+            <div style={styles.block}><Checkbox label="Plus" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Plus")}/></div>
+         </div>
+       </div>
+
+       </div>
+      </Responsive>
+
         <Responsive minDeviceWidth={1024}>
         <div style={divStyle5}>
          <div style={headerStyle3}>Account Info</div>
@@ -620,6 +797,28 @@ export default class Shop extends React.PureComponent {
           <input onTouchTap = {this.storeAccountInfo} type="submit" placeholder="Submit" style={buttonBox3}/>
 
         </div>
+        </Responsive>
+
+        <Responsive maxDeviceWidth={1023}>
+        <div style={divStyle5Mobile} style={{maxWidth:"300px", margin:"0 auto", marginTop:"30px", marginBottom:"30px"}}>
+         <div style={headerStyle3}>Account Info</div>
+          <Paper zDepth={2}>
+            <TextField onChange = {this.handleFirstName} hintText="First name" style={textFieldstyle} value={this.state.firstName} underlineShow={false} />
+            <Divider />
+            <TextField onChange = {this.handlelastName} hintText="Last name" style={textFieldstyle} value={this.state.lastName} underlineShow={false} />
+            <Divider />
+            <TextField onChange = {this.handleStreetAddress} hintText="Street address" style={textFieldstyle} value={this.state.streetAddress} underlineShow={false} />
+            <Divider />
+            <TextField onChange = {this.handlePhoneNumber} hintText="Phone Number" style={textFieldstyle} value={this.state.phoneNumber} underlineShow={false} />
+            <Divider />
+            <TextField onChange = {this.handleAccountEmail} hintText="Email address" style={textFieldstyle} value={this.state.accountEmail} underlineShow={false} />
+            <Divider />
+          </Paper>
+          </div>
+
+          <div style={divStyle5Mobile}>
+           <input onTouchTap = {this.storeAccountInfo} type="submit" placeholder="Submit" style={buttonBox3}/>
+          </div>
         </Responsive>
 
 
@@ -668,7 +867,7 @@ export default class Shop extends React.PureComponent {
                   <label style={textStyle}>SUBSCRIBE FOR UPDATES<input type="text" style={inputBox} value={this.state.email} placeholder=" Email Address"/> </label>
                   <input onTouchTap = {this.storeEmail} type="submit" placeholder="Send Message" style={buttonBox2}/>
 
-                  &copy; 2017<script>new Date().getFullYear()>2017&&document.write("-"+new Date().getFullYear());</script>, Sumo Robot League.<br/>Proudly designed by <a href="http://cb-iii.com">Charlie Bradley III</a> Rebecca Van Loenen
+                  &copy; 2017<script>new Date().getFullYear()>2017&&document.write("-"+new Date().getFullYear());</script>, Recycle Bin.<br/>Proudly designed by <a href="http://cb-iii.com">Charlie Bradley III</a> Rebecca Van Loenen
               </div>
               </div>
             </div>

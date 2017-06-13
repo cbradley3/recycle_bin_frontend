@@ -40,7 +40,7 @@ export default class Home extends React.PureComponent {
       var data = new FormData ();
       data.append("email", this.state.email);
 
-    fetch("http://rb.thathashimottoslife/api/storeEmail",{
+    fetch("http://rb.thathashimottoslife.com/api/storeEmail",{
       method:"post",
       body:data
     })
@@ -80,6 +80,18 @@ export default class Home extends React.PureComponent {
     const divStyle2={
       width:"900px",
       height:"200px",
+      display:"flex",
+      flexDirection:"column",
+      alignItems:"center",
+      paddingLeft:"10px",
+      paddingRight:"10px",
+      background:"rgba(245, 128, 34, 1.00)",
+      color:"rgba(255, 255, 255, 1.00)",
+    }
+
+    const divStyle2Mobile={
+      width:"100%",
+      height:"auto",
       display:"flex",
       flexDirection:"column",
       alignItems:"center",
@@ -260,6 +272,16 @@ export default class Home extends React.PureComponent {
         alignSelf:"center",
       }
 
+      const logoStyleMobile={
+        margin:"0 auto",
+        marginTop:"20px",
+        marginBottom:"20px",
+        height:"50px",
+        display:"flex",
+        flexDirection:"row",
+        alignSelf:"center",
+      }
+
       const images = [
       {
         url: "http://h4z.it/Image/0981ee_1866_960_720.jpg",
@@ -295,6 +317,7 @@ export default class Home extends React.PureComponent {
               <NavBar/>
           </header>
 
+      <Responsive minDeviceWidth={1024}>
         <div style={divStyle1}>
           <Carousel style={{maxWidth:"900px", margin:"0 auto", marginTop:"30px", marginBottom:"0px", border:"25px solid #ffffff"}}>
             <Carousel.Item>
@@ -320,6 +343,35 @@ export default class Home extends React.PureComponent {
             </Carousel.Item>
           </Carousel>
         </div>
+      </Responsive>
+
+      <Responsive maxDeviceWidth={1023}>
+        <div style={divStyle1}>
+          <Carousel style={{maxWidth:"900px", margin:"0 auto", marginTop:"30px", marginBottom:"0px", border:"10px solid #ffffff"}}>
+            <Carousel.Item>
+              <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/ec3db1_RCB_box.jpg"/>
+              <Carousel.Caption>
+                <h3>The Recycle Bin</h3>
+                <p>From our store to your door.</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/0449c9_s_Augusta_GA.jpg"/>
+              <Carousel.Caption>
+                <h3>The Recycle Bin</h3>
+                <p>From our store to your door.</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/5b2386_ndCharles001.jpg"/>
+              <Carousel.Caption>
+                <h3>The Recycle Bin</h3>
+                <p>From our store to your door.</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+          </Carousel>
+        </div>
+      </Responsive>
 
         <Responsive minDeviceWidth={1024}>
             <div style={divStyle2}>
@@ -335,7 +387,7 @@ export default class Home extends React.PureComponent {
         </Responsive>
 
         <Responsive maxDeviceWidth={1023}>
-            <div style={divStyle2}>
+            <div style={divStyle2Mobile}>
               <div style={{maxWidth:"300px", margin:"0 auto", marginTop:"30px", marginBottom:"30px"}}>
                 <div style={headerStyle}>What is Recycle Bin?</div>
                   <div style={textStyle}>
@@ -359,7 +411,25 @@ export default class Home extends React.PureComponent {
         </div>
       </Responsive>
 
+      <Responsive maxDeviceWidth={1023}>
+          <div style={divStyle3}>
+            <div style={{maxWidth:"300px", margin:"0 auto", marginTop:"30px", marginBottom:"30px"}}>
+              <div style={headerStyle2}>Just a few examples of what you can find your</div>
+              <img style={logoStyleMobile} src="http://h4z.it/Image/edf6d5__bin_logo_sm.png"/>
+
+               <ReactRpg imagesArray={images} columns={[ 1, 2, ]} padding={10} />
+
+        </div>
+      </div>
+    </Responsive>
+
       <Responsive minDeviceWidth={1024}>
+          <div style={divStyle4}>
+            <Link style={buttonBox} to= "/Shop"> Shop </Link>
+          </div>
+      </Responsive>
+
+      <Responsive maxDeviceWidth={1023}>
           <div style={divStyle4}>
             <Link style={buttonBox} to= "/Shop"> Shop </Link>
           </div>
@@ -410,7 +480,7 @@ export default class Home extends React.PureComponent {
                     <label style={textStyle}>SUBSCRIBE FOR UPDATES<input type="text" style={inputBox} value={this.state.email} placeholder=" Email Address"/> </label>
                     <input onTouchTap = {this.storeEmail} type="submit" placeholder="Send Message" style={buttonBox2}/>
 
-                    &copy; 2017<script>new Date().getFullYear()>2017&&document.write("-"+new Date().getFullYear());</script>, Sumo Robot League.<br/>Proudly designed by <a href="http://cb-iii.com">Charlie Bradley III</a> Rebecca Van Loenen
+                    &copy; 2017<script>new Date().getFullYear()>2017&&document.write("-"+new Date().getFullYear());</script>, Recycle Bin.<br/>Proudly designed by <a href="http://cb-iii.com">Charlie Bradley III</a> Rebecca Van Loenen
                 </div>
                 </div>
               </div>

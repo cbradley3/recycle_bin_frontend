@@ -67,7 +67,7 @@ handleMessage = (event) => {
       data.append("website", this.state.website);
       data.append("message", this.state.message);
 
-    fetch("http://rb.thathashimottoslife/api/storeContact",{
+    fetch("http://rb.thathashimottoslife.com/api/storeContact",{
       method:"post",
       body:data
     })
@@ -97,7 +97,7 @@ handleMessage = (event) => {
 
     data.append("email", this.state.email);
 
-  fetch("http://rb.thathashimottoslife/api/storeEmail",{
+  fetch("http://rb.thathashimottoslife.com/api/storeEmail",{
     method:"post",
     body:data
   })
@@ -356,6 +356,16 @@ handleMessage = (event) => {
         margin:"0 auto",
       }
 
+      const logoStyleMobile={
+        margin:"0 auto",
+        marginTop:"20px",
+        marginBottom:"20px",
+        height:"50px",
+        display:"flex",
+        flexDirection:"row",
+        alignSelf:"center",
+      }
+
     return (
       <div style={divStyleMain}>
         <Helmet title="Contact" meta={[ { name: 'description', content: 'Description of Contact' }]}/>
@@ -364,31 +374,61 @@ handleMessage = (event) => {
             <NavBar/>
         </header>
 
-      <div style={divStyle1}>
-        <Carousel style={{maxWidth:"900px", margin:"0 auto", marginTop:"30px", marginBottom:"0px", border:"25px solid #ffffff"}}>
-          <Carousel.Item>
-            <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/ec3db1_RCB_box.jpg"/>
-            <Carousel.Caption>
-              <h3>The Recycle Bin</h3>
-              <p>From our store to your door.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/0449c9_s_Augusta_GA.jpg"/>
-            <Carousel.Caption>
-              <h3>The Recycle Bin</h3>
-              <p>From our store to your door.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/5b2386_ndCharles001.jpg"/>
-            <Carousel.Caption>
-              <h3>The Recycle Bin</h3>
-              <p>From our store to your door.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-        </Carousel>
-      </div>
+        <Responsive minDeviceWidth={1024}>
+          <div style={divStyle1}>
+            <Carousel style={{maxWidth:"900px", margin:"0 auto", marginTop:"30px", marginBottom:"0px", border:"25px solid #ffffff"}}>
+              <Carousel.Item>
+                <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/ec3db1_RCB_box.jpg"/>
+                <Carousel.Caption>
+                  <h3>The Recycle Bin</h3>
+                  <p>From our store to your door.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/0449c9_s_Augusta_GA.jpg"/>
+                <Carousel.Caption>
+                  <h3>The Recycle Bin</h3>
+                  <p>From our store to your door.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/5b2386_ndCharles001.jpg"/>
+                <Carousel.Caption>
+                  <h3>The Recycle Bin</h3>
+                  <p>From our store to your door.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+            </Carousel>
+          </div>
+        </Responsive>
+
+        <Responsive maxDeviceWidth={1023}>
+          <div style={divStyle1}>
+            <Carousel style={{maxWidth:"900px", margin:"0 auto", marginTop:"30px", marginBottom:"0px", border:"10px solid #ffffff"}}>
+              <Carousel.Item>
+                <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/ec3db1_RCB_box.jpg"/>
+                <Carousel.Caption>
+                  <h3>The Recycle Bin</h3>
+                  <p>From our store to your door.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/0449c9_s_Augusta_GA.jpg"/>
+                <Carousel.Caption>
+                  <h3>The Recycle Bin</h3>
+                  <p>From our store to your door.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/5b2386_ndCharles001.jpg"/>
+                <Carousel.Caption>
+                  <h3>The Recycle Bin</h3>
+                  <p>From our store to your door.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+            </Carousel>
+          </div>
+        </Responsive>
 
       <Responsive minDeviceWidth={1024}>
           <div style={divStyle3}>
@@ -421,6 +461,38 @@ handleMessage = (event) => {
               </div>
             </div>
           </Responsive>
+
+          <Responsive maxDeviceWidth={1023}>
+              <div style={divStyle3}>
+                <div style={{maxWidth:"300px", margin:"0 auto", marginTop:"30px", marginBottom:"30px"}}>
+                  <div style={headerStyle2}>Contact</div>
+                  <img style={logoStyleMobile} src="http://h4z.it/Image/edf6d5__bin_logo_sm.png"/>
+                  <div style={textStyle2}>
+                    Recycle Bin is a subscription box service you can subscribe to from 2nd and Charles.
+                    Simply pick your categories of interest, your fandom and your desired subscription level and we ship goodies
+                    from our store to your door!<br/>
+                    If you wish to contact us with any questions or comments please fill out all of the fields below.<br/>
+                    Thank you for choosing Recycle Bin from 2nd and Charles.<br/>
+                    <br/></div>
+
+                    <div style={contactRowMobile}>
+                      <label style={textStyle}><input onChange = {this.handleName} type="text" style={inputBox} value={this.state.name} placeholder="Name"/> </label>
+                      </div>
+                      <div style={contactRowMobile}>
+                      <label style={textStyle}><input onChange = {this.handleEmail} type="email" style={inputBox} value={this.state.email} placeholder="Email Address"/> </label>
+                    </div>
+                    <div style={contactRowMobile}>
+                      <label style={textStyle}><input onChange = {this.handleNumber} type="number" style={inputBox} value={this.state.number} placeholder="Phone Number"/> </label>
+                      </div>
+                    <div style={contactRowMobile}>
+                      <label style={textStyle}><textarea onChange = {this.handleMessage} type="text" style={inputBox2} placeholder="Your Message">{this.state.message}</textarea> </label>
+                    </div>
+                    <div style={{margin:"0 auto"}}>
+                      <input onTouchTap = {this.storeContact} type="submit" placeholder="Send Message" style={buttonBox2}/>
+                   </div>
+                  </div>
+                </div>
+              </Responsive>
 
       <Responsive minDeviceWidth={1024}>
           <div style={divStyle5}>
@@ -467,7 +539,7 @@ handleMessage = (event) => {
                   <label style={textStyle}>SUBSCRIBE FOR UPDATES<input type="text" style={inputBox} value={this.state.email} placeholder=" Email Address"/> </label>
                   <input onTouchTap = {this.storeEmail} type="submit" placeholder="Send Message" style={buttonBox2}/>
 
-                  &copy; 2017<script>new Date().getFullYear()>2017&&document.write("-"+new Date().getFullYear());</script>, Sumo Robot League.<br/>Proudly designed by <a href="http://cb-iii.com">Charlie Bradley III</a> Rebecca Van Loenen
+                  &copy; 2017<script>new Date().getFullYear()>2017&&document.write("-"+new Date().getFullYear());</script>, Recycle Bin.<br/>Proudly designed by <a href="http://cb-iii.com">Charlie Bradley III</a> Rebecca Van Loenen
               </div>
               </div>
             </div>

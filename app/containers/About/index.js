@@ -39,7 +39,7 @@ export default class About extends React.PureComponent {
       var data = new FormData ();
       data.append("email", this.state.email);
 
-    fetch("http://rb.thathashimottoslife/api/storeEmail",{
+    fetch("http://rb.thathashimottoslife.com/api/storeEmail",{
       method:"post",
       body:data
     })
@@ -267,6 +267,16 @@ export default class About extends React.PureComponent {
         alignSelf:"center",
       }
 
+      const logoStyleMobile={
+        margin:"0 auto",
+        marginTop:"20px",
+        marginBottom:"20px",
+        height:"50px",
+        display:"flex",
+        flexDirection:"row",
+        alignSelf:"center",
+      }
+
     return (
       <div style={divStyleMain}>
         <Helmet title="About" meta={[ { name: 'description', content: 'Description of About' }]}/>
@@ -275,31 +285,61 @@ export default class About extends React.PureComponent {
             <NavBar/>
         </header>
 
-      <div style={divStyle1}>
-        <Carousel style={{maxWidth:"900px", margin:"0 auto", marginTop:"30px", marginBottom:"0px", border:"25px solid #ffffff"}}>
-          <Carousel.Item>
-            <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/ec3db1_RCB_box.jpg"/>
-            <Carousel.Caption>
-              <h3>The Recycle Bin</h3>
-              <p>From our store to your door.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/0449c9_s_Augusta_GA.jpg"/>
-            <Carousel.Caption>
-              <h3>The Recycle Bin</h3>
-              <p>From our store to your door.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/5b2386_ndCharles001.jpg"/>
-            <Carousel.Caption>
-              <h3>The Recycle Bin</h3>
-              <p>From our store to your door.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-        </Carousel>
-      </div>
+        <Responsive minDeviceWidth={1024}>
+          <div style={divStyle1}>
+            <Carousel style={{maxWidth:"900px", margin:"0 auto", marginTop:"30px", marginBottom:"0px", border:"25px solid #ffffff"}}>
+              <Carousel.Item>
+                <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/ec3db1_RCB_box.jpg"/>
+                <Carousel.Caption>
+                  <h3>The Recycle Bin</h3>
+                  <p>From our store to your door.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/0449c9_s_Augusta_GA.jpg"/>
+                <Carousel.Caption>
+                  <h3>The Recycle Bin</h3>
+                  <p>From our store to your door.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/5b2386_ndCharles001.jpg"/>
+                <Carousel.Caption>
+                  <h3>The Recycle Bin</h3>
+                  <p>From our store to your door.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+            </Carousel>
+          </div>
+        </Responsive>
+
+        <Responsive maxDeviceWidth={1023}>
+          <div style={divStyle1}>
+            <Carousel style={{maxWidth:"900px", margin:"0 auto", marginTop:"30px", marginBottom:"0px", border:"10px solid #ffffff"}}>
+              <Carousel.Item>
+                <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/ec3db1_RCB_box.jpg"/>
+                <Carousel.Caption>
+                  <h3>The Recycle Bin</h3>
+                  <p>From our store to your door.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/0449c9_s_Augusta_GA.jpg"/>
+                <Carousel.Caption>
+                  <h3>The Recycle Bin</h3>
+                  <p>From our store to your door.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/5b2386_ndCharles001.jpg"/>
+                <Carousel.Caption>
+                  <h3>The Recycle Bin</h3>
+                  <p>From our store to your door.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+            </Carousel>
+          </div>
+        </Responsive>
 
       <Responsive minDeviceWidth={1024}>
           <div style={divStyle3}>
@@ -339,6 +379,45 @@ export default class About extends React.PureComponent {
               </div>
             </div>
           </Responsive>
+
+          <Responsive maxDeviceWidth={1023}>
+              <div style={divStyle3}>
+                <div style={{maxWidth:"300px", margin:"0 auto", marginTop:"30px", marginBottom:"30px"}}>
+                  <div style={headerStyle2}>About</div>
+                  <img style={logoStyleMobile} src="http://h4z.it/Image/edf6d5__bin_logo_sm.png"/>
+                  <div>
+                    <p style={textStyle2}>Recycle Bin is the new way to get the awesomeness of  2nd & Charles shipped right to your door.
+                    Yes, that's right, all of the glory that is contained in 2nd & Charles is boxed up on a monthly bases and lands in your mailbox.
+                    Our Recycle Bin brains come together in a back room of our 2nd & Charles headquarters and select items of awesomeness to send your way.
+                    You just select the level of plan commitment  that fits your ultimate Recycle Bin desires. If you love your subscription plan then great, if not, you can change your interests, fandom and level on our Shop page.</p>
+
+                    <p style={textStyle2}>Our plans consist of:</p><br/>
+
+                    <p style={textStyle2}>Level #1: Basic<br/>
+                    - 2/3 items<br/>
+                    - shipped monthly<br/>
+                    - $15+shipping/handling</p><br/>
+
+                  <p style={textStyle2}>Level #2: Plus<br/>
+                    - 4/5 items<br/>
+                    - shipped monthly<br/>
+                    - $30+shipping/handling</p><br/>
+
+                    <p style={textStyle2}>Recycle Bin is the brainchild of Charlie Bradley III & Rebecca van Loenen</p><br/>
+
+                    <p style={textStyle2}>Charlie Bradley III:<br/>
+                    - Genius, billionaire, playboy, philanthropist.<br/>
+                    But when he isn't being Tony Stark, Charlie is busy with front and back end web development, print graphic design projects or creating
+                    artwork. Spending time at 2nd and Charles with his kids is his favorite past time...next to building arc reactor powered metal suits of armor, of course.</p><br/>
+
+                    <p style={textStyle2}>Rebecca van Loenen:<br/>
+                    - Imagine an American Ninja Warrior of the crafting world and you get Rebecca. Rebecca also practices the fine art of 'adulting' by offering
+                    her knowledge of project management and marketing to the Recycle Bin team. She enjoys long walks up and down the aisles of 2nd & Charles,
+                    you know, just for research purposes.</p><br/>
+                  </div>
+                  </div>
+                </div>
+              </Responsive>
 
       <Responsive minDeviceWidth={1024}>
           <div style={divStyle5}>
@@ -385,7 +464,7 @@ export default class About extends React.PureComponent {
                   <label style={textStyle}>SUBSCRIBE FOR UPDATES<input type="text" style={inputBox} value={this.state.email} placeholder=" Email Address"/> </label>
                   <input onTouchTap = {this.storeEmail} type="submit" placeholder="Send Message" style={buttonBox2}/>
 
-                  &copy; 2017<script>new Date().getFullYear()>2017&&document.write("-"+new Date().getFullYear());</script>, Sumo Robot League.<br/>Proudly designed by <a href="http://cb-iii.com">Charlie Bradley III</a> Rebecca Van Loenen
+                  &copy; 2017<script>new Date().getFullYear()>2017&&document.write("-"+new Date().getFullYear());</script>, Recycle Bin.<br/>Proudly designed by <a href="http://cb-iii.com">Charlie Bradley III</a> Rebecca Van Loenen
               </div>
               </div>
             </div>
