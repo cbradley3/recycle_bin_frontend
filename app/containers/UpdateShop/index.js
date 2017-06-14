@@ -78,7 +78,7 @@ export default class UpdateShop extends React.PureComponent {
       var data = new FormData ();
       data.append("email", this.state.email);
 
-    fetch("http://rb.thathashimottoslife/api/storeEmail",{
+    fetch("http://rb.thathashimottoslife.com/api/storeEmail",{
       method:"post",
       body:data
     })
@@ -100,7 +100,7 @@ export default class UpdateShop extends React.PureComponent {
   }
 
   componentWillMount(){
-      fetch("http://rb.thathashimottoslife/api/getAccountInfo" + this.state.token,{
+      fetch("http://rb.thathashimottoslife.com/api/getAccountInfo" + this.state.token,{
         headers:{"Authorization":"Bearer "+this.state.token}
       })
       .then(function(res){
@@ -115,7 +115,7 @@ export default class UpdateShop extends React.PureComponent {
 
     destroyOrder = (id) =>{
     var _this = this;
-    fetch("http://rb.thathashimottoslif/api/destroyOrder/" + id + "?token=" + this.state.token, {
+    fetch("http://rb.thathashimottoslife.com/api/destroyOrder/" + id + "?token=" + this.state.token, {
       method: "post",
       headers:{"Authorization":"Bearer "+this.state.token}
     })
@@ -171,7 +171,7 @@ export default class UpdateShop extends React.PureComponent {
       data.append("accountEmail", this.state.accountEmail);
       data.append("categories", JSON.stringify(this.state.categories));
 
-  fetch("http://rb.thathashimottoslife/api/storeAccountInfo",{
+  fetch("http://rb.thathashimottoslife.com/api/storeAccountInfo",{
     method:"post",
     body:data
   })
@@ -285,6 +285,18 @@ renderBoxes = (categoryList) => {
       color:"rgba(245, 128, 34, 1.00)",
     }
 
+    const divStyle3Mobile={
+      width:"100%",
+      height:"auto",
+      display:"flex",
+      flexDirection:"column",
+      alignItems:"center",
+      paddingLeft:"10px",
+      paddingRight:"10px",
+      background:"rgba(255, 255, 255, 1.00)",
+      color:"rgba(245, 128, 34, 1.00)",
+    }
+
     const divStyle4={
       width:"900px",
       height:"auto",
@@ -299,6 +311,15 @@ renderBoxes = (categoryList) => {
 
     const divStyle5={
       width:"900px",
+      height:"auto",
+      display:"flex",
+      flexDirection:"column",
+      alignItems:"center",
+      background:"rgba(255, 255, 255, 1.00)",
+    }
+
+    const divStyle5Mobile={
+      width:"100%px",
       height:"auto",
       display:"flex",
       flexDirection:"column",
@@ -448,6 +469,14 @@ renderBoxes = (categoryList) => {
       fontWeight:"300",
       textAlign:"left",
     }
+    const textStyle2Mobile={
+      color:"rgba(245, 128, 34, 1.00)",
+      fontSize:"1.2em",
+      fontFamily:"Open Sans",
+      fontWeight:"300",
+      textAlign:"center",
+      margin:"0 auto"
+    }
 
     const iconStyle={
       color:"rgba(255, 255, 255, 1.00)",
@@ -534,7 +563,23 @@ renderBoxes = (categoryList) => {
         flexDirection:'row',
         justifyContent:"space-between",
         marginLeft:"150px"
+      }
 
+      const logoStyleMobile={
+        margin:"0 auto",
+        marginTop:"20px",
+        marginBottom:"20px",
+        height:"50px",
+        display:"flex",
+        flexDirection:"row",
+        alignSelf:"center",
+      }
+
+      const columnWrapperMobile={
+        width:"100px",
+        display:'flex',
+        flexDirection:'column',
+        margin:"0 auto"
       }
 
 
@@ -546,31 +591,61 @@ renderBoxes = (categoryList) => {
             <NavBar/>
         </header>
 
-      <div style={divStyle1}>
-        <Carousel style={{maxWidth:"900px", margin:"0 auto", marginTop:"30px", marginBottom:"0px", border:"25px solid #ffffff"}}>
-          <Carousel.Item>
-            <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/ec3db1_RCB_box.jpg"/>
-            <Carousel.Caption>
-              <h3>The Recycle Bin</h3>
-              <p>From our store to your door.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/0449c9_s_Augusta_GA.jpg"/>
-            <Carousel.Caption>
-              <h3>The Recycle Bin</h3>
-              <p>From our store to your door.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/5b2386_ndCharles001.jpg"/>
-            <Carousel.Caption>
-              <h3>The Recycle Bin</h3>
-              <p>From our store to your door.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-        </Carousel>
-      </div>
+        <Responsive minDeviceWidth={1024}>
+          <div style={divStyle1}>
+            <Carousel style={{maxWidth:"900px", margin:"0 auto", marginTop:"30px", marginBottom:"0px", border:"25px solid #ffffff"}}>
+              <Carousel.Item>
+                <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/ec3db1_RCB_box.jpg"/>
+                <Carousel.Caption>
+                  <h3>The Recycle Bin</h3>
+                  <p>From our store to your door.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/0449c9_s_Augusta_GA.jpg"/>
+                <Carousel.Caption>
+                  <h3>The Recycle Bin</h3>
+                  <p>From our store to your door.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/5b2386_ndCharles001.jpg"/>
+                <Carousel.Caption>
+                  <h3>The Recycle Bin</h3>
+                  <p>From our store to your door.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+            </Carousel>
+          </div>
+        </Responsive>
+
+        <Responsive maxDeviceWidth={1023}>
+          <div style={divStyle1}>
+            <Carousel style={{maxWidth:"900px", margin:"0 auto", marginTop:"30px", marginBottom:"0px", border:"10px solid #ffffff"}}>
+              <Carousel.Item>
+                <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/ec3db1_RCB_box.jpg"/>
+                <Carousel.Caption>
+                  <h3>The Recycle Bin</h3>
+                  <p>From our store to your door.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/0449c9_s_Augusta_GA.jpg"/>
+                <Carousel.Caption>
+                  <h3>The Recycle Bin</h3>
+                  <p>From our store to your door.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img width={900} height={500} alt="900x500" src="http://h4z.it/Image/5b2386_ndCharles001.jpg"/>
+                <Carousel.Caption>
+                  <h3>The Recycle Bin</h3>
+                  <p>From our store to your door.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+            </Carousel>
+          </div>
+        </Responsive>
 
       <Responsive minDeviceWidth={1024}>
           <div style={divStyle3}>
@@ -600,6 +675,35 @@ renderBoxes = (categoryList) => {
               </div>
             </div>
           </Responsive>
+
+          <Responsive maxDeviceWidth={1023}>
+              <div style={divStyle3Mobile}>
+                <div style={{maxWidth:"300px", margin:"0 auto", marginTop:"30px", marginBottom:"30px"}}>
+                  <div style={headerStyle2}>Shop</div>
+                  <img style={logoStyleMobile} src="http://h4z.it/Image/edf6d5__bin_logo_sm.png"/>
+                  <div style={textStyle2}>
+                    Recycle Bin is a subscription box service you can subscribe to from 2nd and Charles.
+                    Simply pick your categories of interest, your fandom and your desired subscription level and we ship goodies
+                    from our store to your door!<br/>
+                    From books, comics, figurines and t-shirts
+                    to pre-owned vinyl records, DVDs, BluRays and video games, we have your interest covered!
+                    You just select the level of plan commitment that fits your ultimate Recycle Bin desires.
+                    If you love your subscription plan then great, if not, you can change your interests, fandom and level here.<br/>
+                    <br/>
+                    Our plans consist of:<br/>
+                    <br/>
+                    Level #1: Basic<br/>
+                    - 2/3 items<br/>
+                    - shipped monthly<br/>
+                    - $15+shipping/handling<br/>
+                    <br/>
+                    Level #2: Plus<br/>
+                    - 4/5 items<br/>
+                    - shipped monthly<br/>
+                    - $30+shipping/handling<br/></div>
+                  </div>
+                </div>
+              </Responsive>
 
           <Responsive minDeviceWidth={1024}>
           <div style={divStyle4}>
@@ -639,6 +743,44 @@ renderBoxes = (categoryList) => {
          </div>
         </Responsive>
 
+        <Responsive maxDeviceWidth={1023}>
+        <div style={divStyle4}>
+         <div style={headerStyle3}>Interest</div>
+         <div style={columnWrapperMobile}>
+          <div style={checkboxColumn}>
+            {this.renderBoxes(["SciFi", "Fantasy", "Mystery", "Romance", "Cooking", "Thrillers"])}
+         </div>
+         <div style={checkboxColumn}>
+            {this.renderBoxes(["Drama", "Horror", "Self/Help", "History", "Biographies", "Autobiographies"])}
+          </div>
+          <div style={checkboxColumn}>
+            {this.renderBoxes(["Poetry", "Action/Adventure", "Comics", "Spiritual/NewAge", "Science", "Technology"])}
+          </div>
+        </div>
+
+      <div style={headerStyle3}>Fandom</div>
+        <div style={columnWrapperMobile}>
+         <div style={checkboxColumn}>
+           {this.renderBoxes(["Marvel", "DC", "StarWars", "TheWalkingDead", "TheXfiles", "LordOfTheRings"])}
+        </div>
+        <div style={checkboxColumn}>
+           {this.renderBoxes(["Transformers", "Pokemon", "HarryPotter", "StarTrek", "Disney", "MyLittlePony"])}
+         </div>
+         <div style={checkboxColumn}>
+           {this.renderBoxes(["Halo", "MarioBros", "GameOfThrones", "Minecraft", "DragonballZ", "TheMatrix"])}
+         </div>
+       </div>
+
+       <div style={headerStyle3}>Recycle Bin</div>
+         <div style={columnWrapperMobile}>
+          <div style={checkboxColumn}>
+            {this.renderBoxes(["Basic", "Plus"])}
+         </div>
+       </div>
+
+       </div>
+      </Responsive>
+
         <Responsive minDeviceWidth={1024}>
         <div style={divStyle5}>
          <div style={headerStyle3}>Account Info</div>
@@ -665,6 +807,36 @@ renderBoxes = (categoryList) => {
 
 
         </div>
+        </Responsive>
+
+        <Responsive maxDeviceWidth={1023}>
+        <div style={divStyle5Mobile} style={{maxWidth:"300px", margin:"0 auto", marginTop:"30px", marginBottom:"30px", background:"rgba(255, 255, 255, 1.00)"}}>
+         <div style={headerStyle3}>Account Info</div>
+          <Paper zDepth={2}>
+            <TextField onChange = {this.handleFirstName} hintText="First name" style={textFieldstyle} value={this.state.firstName} underlineShow={false} />
+            <Divider />
+            <TextField onChange = {this.handlelastName} hintText="Last name" style={textFieldstyle} value={this.state.lastName} underlineShow={false} />
+            <Divider />
+            <TextField onChange = {this.handleStreetAddress} hintText="Street address" style={textFieldstyle} value={this.state.streetAddress} underlineShow={false} />
+            <Divider />
+            <TextField onChange = {this.handlePhoneNumber} hintText="Phone Number" style={textFieldstyle} value={this.state.phoneNumber} underlineShow={false} />
+            <Divider />
+            <TextField onChange = {this.handleAccountEmail} hintText="Email address" style={textFieldstyle} value={this.state.accountEmail} underlineShow={false} />
+            <Divider />
+          </Paper>
+          </div>
+
+          <div style={divStyle5Mobile}>
+           <input onTouchTap = {this.storeAccountInfo} type="submit" placeholder="Submit" style={buttonBox3}/>
+
+
+
+          <div style={textStyle2Mobile}>
+          If you decide that Recycle Bin is not right for you at this time, you may click the button below to cancel your subscription.</div>
+
+          <input onTouchTap={()=>this.destroyOrder(order.id)} type="submit" placeholder="Submit" style={buttonBox}/>
+
+          </div>
         </Responsive>
 
 
@@ -713,7 +885,7 @@ renderBoxes = (categoryList) => {
                   <label style={textStyle}>SUBSCRIBE FOR UPDATES<input type="text" style={inputBox} value={this.state.email} placeholder=" Email Address"/> </label>
                   <input onTouchTap = {this.storeEmail} type="submit" placeholder="Send Message" style={buttonBox2}/>
 
-                  &copy; 2017<script>new Date().getFullYear()>2017&&document.write("-"+new Date().getFullYear());</script>, Sumo Robot League.<br/>Proudly designed by <a href="http://cb-iii.com">Charlie Bradley III</a> Rebecca Van Loenen
+                  &copy; 2017<script>new Date().getFullYear()>2017&&document.write("-"+new Date().getFullYear());</script>, Recycle Bin.<br/>Proudly designed by <a href="http://cb-iii.com">Charlie Bradley III</a> Rebecca Van Loenen
               </div>
               </div>
             </div>

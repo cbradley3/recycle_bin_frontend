@@ -240,6 +240,25 @@ handlePasswordSignIn = (event) => {
       textTransform:"uppercase",
       letterSpacing:"2px",
     }
+
+    const navStyle2Mobile={
+      display:"flex",
+      flexDirection:"column",
+      justifyContent:"center",
+      width:"100%",
+      height:"auto",
+      alignItems:"center",
+      textDecoration:"none",
+      color:"rgba(245, 128, 34, 1.00)",
+      fontSize:".90em",
+      fontFamily:"Open Sans",
+      fontStyle:"light",
+      fontWeight:"400",
+      textAlign:"right",
+      textTransform:"uppercase",
+      letterSpacing:"2px",
+    }
+
     const headStyle={
       width:"100%",
       display:"flex",
@@ -332,6 +351,7 @@ handlePasswordSignIn = (event) => {
         width:"300px",
         height:"300px",
         background:"#ffffff",
+        margin:"0 auto",
         display:"flex",
         flexDirection:"column",
         alignItems:"center",
@@ -421,10 +441,42 @@ handlePasswordSignIn = (event) => {
         textAlign:"left",
       }
 
+      const textStyle2={
+        color:"rgba(245, 128, 34, 1.00)",
+        fontSize:"1.2em",
+        fontFamily:"Open Sans",
+        fontWeight:"300",
+        textAlign:"center",
+      }
+
       const wrapper={
         display:"flex",
         flexDirection:"row",
         justifyContent:"center",
+      }
+
+      const wrapperMobile={
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"center",
+      }
+
+      const contactLeftMobile={
+        width:"100%",
+        display:"flex",
+        flexDirection:"column",
+        alignItems:"center",
+        justifyContent:"center",
+
+      }
+
+      const contactRightMobile={
+        width:"100%",
+        display:"flex",
+        flexDirection:"column",
+        alignItems:"center",
+        justifyContent:"center",
+
       }
 
 
@@ -463,7 +515,7 @@ handlePasswordSignIn = (event) => {
         <div style={divStyle3Mobile}>
         <div style={{maxWidth:"300px", margin:"0 auto",}}>
               <img style={logoStyle2} src="http://h4z.it/Image/bd3fd9_bin_logoW_sm.png"/>
-              <nav style={navStyle2}>
+              <nav style={navStyle2Mobile}>
                 <IconButton onTouchTap={this.handleMenu}> <MenuIcon/> </IconButton>
               </nav>
               {this.showMenu()}
@@ -471,6 +523,7 @@ handlePasswordSignIn = (event) => {
         </div>
         </Responsive>
 
+        <Responsive minDeviceWidth={1024}>
         <Dialog
           title="Login - Sign In / Sign Up"
           modal={false}
@@ -510,6 +563,49 @@ handlePasswordSignIn = (event) => {
             </div>
           </div>
         </Dialog>
+        </Responsive>
+
+        <Responsive maxDeviceWidth={1023}>
+        <Dialog
+          title="Login - Sign In / Sign Up"
+          modal={false}
+          open={this.state.open}
+          onRequestClose={this.handleClose}>
+          <div style={wrapperMobile}>
+            <div style={dialogStyle2}>
+              <div style={contactLeftMobile}>
+                <label style={textStyle2}>Sign In<input onChange = {this.handleEmailSignIn} type="email" style={inputBox} value={this.state.emailSignIn} placeholder="Email Address"/> </label>
+              </div>
+
+              <div style={contactLeftMobile}>
+                <label style={textStyle}><input onChange = {this.handlePasswordSignIn} style={inputBox} type="password" value={this.state.passwordSignIn} placeholder="password"/> </label>
+              </div>
+
+              <div style={contactLeftMobile}>
+                <input onTouchTap = {this.storeSignIn} type="submit" value="Sign In" placeholder="Sign In" style={buttonBox}/>
+              </div>
+            </div>
+
+            <div style={dialogStyle2}>
+              <div style={contactRightMobile}>
+                <label style={textStyle2}>Sign Up<input onChange = {this.handleUsername} type="username" style={inputBox2} value={this.state.username} placeholder="Username"/> </label>
+              </div>
+
+              <div style={contactRightMobile}>
+                <label style={textStyle}><input onChange = {this.handleEmailSignUp} type="email" style={inputBox2} value={this.state.emailSignUp} placeholder="Email Address"/> </label>
+              </div>
+
+              <div style={contactRightMobile}>
+                <label style={textStyle}><input onChange = {this.handlePasswordSignUp} style={inputBox2} type="password" value={this.state.passwordSignUp} placeholder="password"/> </label>
+              </div>
+
+              <div style={contactRightMobile}>
+                <input onTouchTap = {this.storeSignUp} type="submit" value="Sign Up" placeholder="Sign Up" style={buttonBox2}/>
+              </div>
+            </div>
+          </div>
+        </Dialog>
+        </Responsive>
       </div>
     );
   }
