@@ -313,9 +313,7 @@ export default class Home extends React.PureComponent {
       <div style={divStyleMain}>
         <Helmet title="Home" meta={[ { name: 'description', content: 'Description of Home' }]}/>
 
-          <header>
               <NavBar/>
-          </header>
 
       <Responsive minDeviceWidth={1024}>
         <div style={divStyle1}>

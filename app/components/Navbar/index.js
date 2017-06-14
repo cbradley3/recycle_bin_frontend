@@ -249,7 +249,8 @@ handlePasswordSignIn = (event) => {
       height:"auto",
       alignItems:"center",
       textDecoration:"none",
-      color:"rgba(245, 128, 34, 1.00)",
+      background:"rgba(245, 128, 34, 1.00)",
+      color:"rgba(255, 255, 255, 1.00)",
       fontSize:".90em",
       fontFamily:"Open Sans",
       fontStyle:"light",
@@ -305,17 +306,13 @@ handlePasswordSignIn = (event) => {
         zIndex:"99999"
       }
       const divStyle3Mobile={
-        width:"100%",
+        width:"100vw",
         height:"auto",
         display:"flex",
         flexDirection:"column",
         justifyContent:"center",
         color:"rgba(255, 255, 255, 1.00)",
-        position:"fixed",
-        top:"0",
-        left:"0",
         background:"rgba(245, 128, 34, 1.00)",
-        zIndex:"99999"
       }
 
       const actions = [
@@ -513,13 +510,11 @@ handlePasswordSignIn = (event) => {
 
         <Responsive maxDeviceWidth={1023}>
         <div style={divStyle3Mobile}>
-        <div style={{maxWidth:"300px", margin:"0 auto",}}>
               <img style={logoStyle2} src="http://h4z.it/Image/bd3fd9_bin_logoW_sm.png"/>
               <nav style={navStyle2Mobile}>
                 <IconButton onTouchTap={this.handleMenu}> <MenuIcon/> </IconButton>
               </nav>
               {this.showMenu()}
-        </div>
         </div>
         </Responsive>
 
