@@ -26,9 +26,8 @@ export default class Contact extends React.PureComponent {
     super(props);
     this.state={
       name:"",
-      email:"",
+      contactEmail:"",
       number:"",
-      website:"",
       message:"",
     }
   }
@@ -37,19 +36,14 @@ export default class Contact extends React.PureComponent {
       name: event.target.value
     })
   }
-  handleEmail = (event) => {
+  handleContactEmail = (event) => {
     this.setState({
-      email:event.target.value
+      contactEmail:event.target.value
     })
   }
   handleNumber = (event) => {
     this.setState({
       number: event.target.value
-    })
-  }
-  handleWebsite = (event) => {
-    this.setState({
-      website:event.target.value
     })
   }
 handleMessage = (event) => {
@@ -62,12 +56,11 @@ handleMessage = (event) => {
     storeContact = () => {
       var data = new FormData ();
       data.append("name", this.state.name);
-      data.append("email", this.state.email);
+      data.append("contactEmail", this.state.contactEmail);
       data.append("number", this.state.number);
-      data.append("website", this.state.website);
       data.append("message", this.state.message);
 
-    fetch("http://rb.thathashimottoslife.com/api/storeContact",{
+    fetch("http://rb.thathashimottoslife.com/api/storeContacts",{
       method:"post",
       body:data
     })
@@ -78,9 +71,8 @@ handleMessage = (event) => {
       if(json.success){
         this.setState({
           name:"",
-          email:"",
+          contactEmail:"",
           number:"",
-          website:"",
           message:"",
         })
         alert(json.success);
@@ -97,7 +89,7 @@ handleMessage = (event) => {
 
     data.append("email", this.state.email);
 
-  fetch("http://rb.thathashimottoslife.com/api/storeEmail",{
+  fetch("http://rb.thathashimottoslife.com/api/storeSubscribers",{
     method:"post",
     body:data
   })
@@ -107,11 +99,7 @@ handleMessage = (event) => {
   .then(function(json){
     if(json.success){
       this.setState({
-        name:"",
         email:"",
-        number:"",
-        website:"",
-        message:"",
       })
       alert(json.success);
     }
@@ -447,7 +435,7 @@ handleMessage = (event) => {
                   <label style={textStyle}><input onChange = {this.handleName} type="text" style={inputBox} value={this.state.name} placeholder="Name"/> </label>
                   </div>
                   <div style={contactRowMobile}>
-                  <label style={textStyle}><input onChange = {this.handleEmail} type="email" style={inputBox} value={this.state.email} placeholder="Email Address"/> </label>
+                  <label style={textStyle}><input onChange = {this.handleContactEmail} type="email" style={inputBox} value={this.state.contactEmail} placeholder="Email Address"/> </label>
                 </div>
                 <div style={contactRowMobile}>
                   <label style={textStyle}><input onChange = {this.handleNumber} type="number" style={inputBox} value={this.state.number} placeholder="Phone Number"/> </label>
@@ -479,7 +467,7 @@ handleMessage = (event) => {
                       <label style={textStyle}><input onChange = {this.handleName} type="text" style={inputBox} value={this.state.name} placeholder="Name"/> </label>
                       </div>
                       <div style={contactRowMobile}>
-                      <label style={textStyle}><input onChange = {this.handleEmail} type="email" style={inputBox} value={this.state.email} placeholder="Email Address"/> </label>
+                      <label style={textStyle}><input onChange = {this.handleContactEmail} type="email" style={inputBox} value={this.state.contactEmail} placeholder="Email Address"/> </label>
                     </div>
                     <div style={contactRowMobile}>
                       <label style={textStyle}><input onChange = {this.handleNumber} type="number" style={inputBox} value={this.state.number} placeholder="Phone Number"/> </label>
@@ -521,7 +509,7 @@ handleMessage = (event) => {
             <div style={{maxWidth:"320px", margin:"0 auto", marginTop:"30px", marginBottom:"30px",
             }}>
             <div style={contactLeft}>
-                <label style={textStyle}>SUBSCRIBE FOR UPDATES<input type="text" style={inputBox} value={this.state.email} placeholder=" Email Address"/> </label>
+                <label style={textStyle}>SUBSCRIBE FOR UPDATES<input onChange = {this.handleEmail} type="text" style={inputBox} value={this.state.email} placeholder=" Email Address"/> </label>
                 <input onTouchTap = {this.storeEmail} type="submit" placeholder="Send Message" style={buttonBox2}/>
 
                 &copy; 2017<script>new Date().getFullYear()>2017&&document.write("-"+new Date().getFullYear());</script>, Recycle Bin.<br/>Proudly designed by <a href="http://cb-iii.com">Charlie Bradley III</a> and Rebecca Van Loenen
@@ -536,7 +524,7 @@ handleMessage = (event) => {
               <div style={{maxWidth:"320px", margin:"0 auto", marginTop:"30px", marginBottom:"30px",
               }}>
               <div style={contactLeft}>
-                  <label style={textStyle}>SUBSCRIBE FOR UPDATES<input type="text" style={inputBox} value={this.state.email} placeholder=" Email Address"/> </label>
+                  <label style={textStyle}>SUBSCRIBE FOR UPDATES<input onChange = {this.handleEmail} type="text" style={inputBox} value={this.state.email} placeholder=" Email Address"/> </label>
                   <input onTouchTap = {this.storeEmail} type="submit" placeholder="Send Message" style={buttonBox2}/>
 
                   &copy; 2017<script>new Date().getFullYear()>2017&&document.write("-"+new Date().getFullYear());</script>, Recycle Bin.<br/>Proudly designed by <a href="http://cb-iii.com">Charlie Bradley III</a> Rebecca Van Loenen

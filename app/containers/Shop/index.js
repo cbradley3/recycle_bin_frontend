@@ -36,7 +36,8 @@ export default class Shop extends React.PureComponent {
       streetAddress:"",
       phoneNumber:"",
       accountEmail:"",
-      categories:[]
+      categories:[],
+      plans:[]
     }
   }
 
@@ -68,6 +69,34 @@ export default class Shop extends React.PureComponent {
     }
   }
 
+  handlePlan= (plan) => {
+    var plans = this.state.plans;
+    var found = false;
+    var index = null;
+    for(var i = 0; i<plans.length;i++)
+    {
+      if(plans[i]===plan)
+      {
+        found = true;
+        index = i;
+      }
+    }
+
+    if(found === true){
+      plans.splice(index,1);
+      this.setState({
+        plans:plans
+      })
+    }
+    else if(found === false)
+    {
+      plans.push(plan);
+      this.setState({
+        plans:plans
+      })
+    }
+  }
+
   handleEmail = (event) => {
     this.setState({
       email:event.target.value
@@ -78,7 +107,7 @@ export default class Shop extends React.PureComponent {
       var data = new FormData ();
       data.append("email", this.state.email);
 
-    fetch("http://rb.thathashimottoslife.com/api/storeEmail",{
+    fetch("http://rb.thathashimottoslife.com/api/storeSubscribers",{
       method:"post",
       body:data
     })
@@ -134,8 +163,9 @@ export default class Shop extends React.PureComponent {
       data.append("phoneNumber", this.state.phoneNumber);
       data.append("accountEmail", this.state.accountEmail);
       data.append("categories", JSON.stringify(this.state.categories));
+      data.append("plan", JSON.stringify(this.state.plans));
 
-  fetch("http://rb.thathashimottoslife.com/api/storeAccountInfo",{
+  fetch("http://rb.thathashimottoslife.com/api/storeOrder",{
     method:"post",
     body:data
   })
@@ -143,7 +173,11 @@ export default class Shop extends React.PureComponent {
     return response.json();
   })
   .then(function(json){
-    if(json.token !== false){
+    if(json.error){
+      alert(json.error);
+
+    }
+    else if(json.success){
       this.setState({
         firstName:"",
         lastName:"",
@@ -151,27 +185,7 @@ export default class Shop extends React.PureComponent {
         phoneNumber:"",
         accountEmail:"",
       })
-
-      sessionStorage.setItem("token", json.token);
-      fetch(""+json.token, {
-        headers:{
-          "Authorization":"Bearer "+json.token
-        }
-      })
-      .then(function(response){
-        return response.json();
-      })
-      .then(function(json){
-        sessionStorage.setItem("user", JSON.stringify(json));
-        alert("Success! You did it!");
-      })
-
-    }
-    else if (json.token === false){
-      alert("Invalid credentials");
-    }
-    else if (json.error){
-      alert("You need to fill out all fields.");
+      alert(json.success);
     }
   }.bind(this))
 }
@@ -701,8 +715,8 @@ export default class Shop extends React.PureComponent {
          <div style={headerStyle3}>Recycle Bin</div>
            <div style={columnWrapper}>
             <div style={checkboxColumn}>
-              <div style={styles.block}><Checkbox label="Basic" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Basic")}/></div>
-              <div style={styles.block}><Checkbox label="Plus" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Plus")}/></div>
+              <div style={styles.block}><Checkbox label="Basic" style={styles.checkbox} onCheck={()=>this.handlePlan("Basic")}/></div>
+              <div style={styles.block}><Checkbox label="Plus" style={styles.checkbox} onCheck={()=>this.handlePlan("Plus")}/></div>
            </div>
          </div>
 
@@ -770,8 +784,8 @@ export default class Shop extends React.PureComponent {
        <div style={headerStyle3}>Recycle Bin</div>
          <div style={columnWrapperMobile}>
           <div style={checkboxColumn}>
-            <div style={styles.block}><Checkbox label="Basic" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Basic")}/></div>
-            <div style={styles.block}><Checkbox label="Plus" style={styles.checkbox} onCheck={()=>this.handleCheckBox("Plus")}/></div>
+            <div style={styles.block}><Checkbox label="Basic" style={styles.checkbox} onCheck={()=>this.handlePlan("Basic")}/></div>
+            <div style={styles.block}><Checkbox label="Plus" style={styles.checkbox} onCheck={()=>this.handlePlan("Plus")}/></div>
          </div>
        </div>
 
@@ -784,7 +798,7 @@ export default class Shop extends React.PureComponent {
           <Paper zDepth={2}>
             <TextField onChange = {this.handleFirstName} hintText="First name" style={textFieldstyle} value={this.state.firstName} underlineShow={false} />
             <Divider />
-            <TextField onChange = {this.handlelastName} hintText="Last name" style={textFieldstyle} value={this.state.lastName} underlineShow={false} />
+            <TextField onChange = {this.handleLastName} hintText="Last name" style={textFieldstyle} value={this.state.lastName} underlineShow={false} />
             <Divider />
             <TextField onChange = {this.handleStreetAddress} hintText="Street address" style={textFieldstyle} value={this.state.streetAddress} underlineShow={false} />
             <Divider />
@@ -805,7 +819,7 @@ export default class Shop extends React.PureComponent {
           <Paper zDepth={2}>
             <TextField onChange = {this.handleFirstName} hintText="First name" style={textFieldstyle} value={this.state.firstName} underlineShow={false} />
             <Divider />
-            <TextField onChange = {this.handlelastName} hintText="Last name" style={textFieldstyle} value={this.state.lastName} underlineShow={false} />
+            <TextField onChange = {this.handleLastName} hintText="Last name" style={textFieldstyle} value={this.state.lastName} underlineShow={false} />
             <Divider />
             <TextField onChange = {this.handleStreetAddress} hintText="Street address" style={textFieldstyle} value={this.state.streetAddress} underlineShow={false} />
             <Divider />
@@ -849,7 +863,7 @@ export default class Shop extends React.PureComponent {
             <div style={{maxWidth:"320px", margin:"0 auto", marginTop:"30px", marginBottom:"30px",
             }}>
             <div style={contactLeft}>
-                <label style={textStyle}>SUBSCRIBE FOR UPDATES<input type="text" style={inputBox} value={this.state.email} placeholder=" Email Address"/> </label>
+                <label style={textStyle}>SUBSCRIBE FOR UPDATES<input onChange = {this.handleEmail} type="text" style={inputBox} value={this.state.email} placeholder=" Email Address"/> </label>
                 <input onTouchTap = {this.storeEmail} type="submit" placeholder="Send Message" style={buttonBox2}/>
 
                 &copy; 2017<script>new Date().getFullYear()>2017&&document.write("-"+new Date().getFullYear());</script>, Recycle Bin.<br/>Proudly designed by <a href="http://cb-iii.com">Charlie Bradley III</a> and Rebecca Van Loenen
@@ -864,7 +878,7 @@ export default class Shop extends React.PureComponent {
               <div style={{maxWidth:"320px", margin:"0 auto", marginTop:"30px", marginBottom:"30px",
               }}>
               <div style={contactLeft}>
-                  <label style={textStyle}>SUBSCRIBE FOR UPDATES<input type="text" style={inputBox} value={this.state.email} placeholder=" Email Address"/> </label>
+                  <label style={textStyle}>SUBSCRIBE FOR UPDATES<input onChange = {this.handleEmail} type="text" style={inputBox} value={this.state.email} placeholder=" Email Address"/> </label>
                   <input onTouchTap = {this.storeEmail} type="submit" placeholder="Send Message" style={buttonBox2}/>
 
                   &copy; 2017<script>new Date().getFullYear()>2017&&document.write("-"+new Date().getFullYear());</script>, Recycle Bin.<br/>Proudly designed by <a href="http://cb-iii.com">Charlie Bradley III</a> Rebecca Van Loenen

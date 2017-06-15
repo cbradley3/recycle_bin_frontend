@@ -78,7 +78,7 @@ export default class UpdateShop extends React.PureComponent {
       var data = new FormData ();
       data.append("email", this.state.email);
 
-    fetch("http://rb.thathashimottoslife.com/api/storeEmail",{
+    fetch("http://rb.thathashimottoslife.com/api/storeSubscribers",{
       method:"post",
       body:data
     })
@@ -100,7 +100,7 @@ export default class UpdateShop extends React.PureComponent {
   }
 
   componentWillMount(){
-      fetch("http://rb.thathashimottoslife.com/api/getAccountInfo" + this.state.token,{
+      fetch("http://rb.thathashimottoslife.com/api/getCategories" + this.state.token,{
         headers:{"Authorization":"Bearer "+this.state.token}
       })
       .then(function(res){
@@ -115,7 +115,7 @@ export default class UpdateShop extends React.PureComponent {
 
     destroyOrder = (id) =>{
     var _this = this;
-    fetch("http://rb.thathashimottoslife.com/api/destroyOrder/" + id + "?token=" + this.state.token, {
+    fetch("http://rb.thathashimottoslife.com/api/deleteOrder/" + id + "?token=" + this.state.token, {
       method: "post",
       headers:{"Authorization":"Bearer "+this.state.token}
     })
@@ -171,7 +171,7 @@ export default class UpdateShop extends React.PureComponent {
       data.append("accountEmail", this.state.accountEmail);
       data.append("categories", JSON.stringify(this.state.categories));
 
-  fetch("http://rb.thathashimottoslife.com/api/storeAccountInfo",{
+  fetch("http://rb.thathashimottoslife.com/api/storeOrder",{
     method:"post",
     body:data
   })
@@ -867,7 +867,7 @@ renderBoxes = (categoryList) => {
             <div style={{maxWidth:"320px", margin:"0 auto", marginTop:"30px", marginBottom:"30px",
             }}>
             <div style={contactLeft}>
-                <label style={textStyle}>SUBSCRIBE FOR UPDATES<input type="text" style={inputBox} value={this.state.email} placeholder=" Email Address"/> </label>
+                <label style={textStyle}>SUBSCRIBE FOR UPDATES<input onChange = {this.handleEmail} type="text" style={inputBox} value={this.state.email} placeholder=" Email Address"/> </label>
                 <input onTouchTap = {this.storeEmail} type="submit" placeholder="Send Message" style={buttonBox2}/>
 
                 &copy; 2017<script>new Date().getFullYear()>2017&&document.write("-"+new Date().getFullYear());</script>, Recycle Bin.<br/>Proudly designed by <a href="http://cb-iii.com">Charlie Bradley III</a> and Rebecca Van Loenen
@@ -882,7 +882,7 @@ renderBoxes = (categoryList) => {
               <div style={{maxWidth:"320px", margin:"0 auto", marginTop:"30px", marginBottom:"30px",
               }}>
               <div style={contactLeft}>
-                  <label style={textStyle}>SUBSCRIBE FOR UPDATES<input type="text" style={inputBox} value={this.state.email} placeholder=" Email Address"/> </label>
+                  <label style={textStyle}>SUBSCRIBE FOR UPDATES<input onChange = {this.handleEmail} type="text" style={inputBox} value={this.state.email} placeholder=" Email Address"/> </label>
                   <input onTouchTap = {this.storeEmail} type="submit" placeholder="Send Message" style={buttonBox2}/>
 
                   &copy; 2017<script>new Date().getFullYear()>2017&&document.write("-"+new Date().getFullYear());</script>, Recycle Bin.<br/>Proudly designed by <a href="http://cb-iii.com">Charlie Bradley III</a> Rebecca Van Loenen

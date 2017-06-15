@@ -123,7 +123,7 @@ handlePasswordSignUp = (event) => {
      data.append("email", this.state.emailSignUp);
      data.append("password", this.state.passwordSignUp);
 
- fetch("http://rb.thathashimottoslife.com/api/storeSignUp",{
+ fetch("http://rb.thathashimottoslife.com/api/SignUp",{
    method:"post",
    body:data
  })
@@ -168,7 +168,7 @@ handlePasswordSignIn = (event) => {
       data.append("email", this.state.emailSignIn);
       data.append("password", this.state.passwordSignIn);
 
-    fetch("http://rb.thathashimottoslife.com/api/storeSignIn",{
+    fetch("http://rb.thathashimottoslife.com/api/SignIn",{
     method:"post",
     body:data
     })
@@ -183,7 +183,7 @@ handlePasswordSignIn = (event) => {
       })
 
       sessionStorage.setItem("token", json.token);
-      fetch("http://rb.thathashimottoslife.com/api/getUser?token"+json.token, {
+      fetch("http://rb.thathashimottoslife.com/api/getUsers?token"+json.token, {
         headers:{
           "Authorization":"Bearer "+json.token
         }
@@ -477,7 +477,7 @@ handlePasswordSignIn = (event) => {
       }
 
 
-      var dashLink = <Link style={linkStyle2} to="/Dashboard">Dashboard</Link>;
+      var dashLink = <Link style={linkStyle2} to="/EditAccount">Dashboard</Link>;
 
       if(this.state.token === null){
         dashLink="";
