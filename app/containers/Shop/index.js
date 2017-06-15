@@ -36,8 +36,9 @@ export default class Shop extends React.PureComponent {
       streetAddress:"",
       phoneNumber:"",
       accountEmail:"",
+      passwordSignUp:"",
       categories:[],
-      plans:[]
+      plans:[],
     }
   }
 
@@ -153,6 +154,11 @@ export default class Shop extends React.PureComponent {
       accountEmail: event.target.value
     })
   }
+  handlePasswordSignUp = (event) => {
+    this.setState({
+      passwordSignUp: event.target.value
+    })
+  }
 
     storeAccountInfo = () => {
 
@@ -162,6 +168,7 @@ export default class Shop extends React.PureComponent {
       data.append("streetAddress", this.state.streetAddress);
       data.append("phoneNumber", this.state.phoneNumber);
       data.append("accountEmail", this.state.accountEmail);
+      data.append("passwordSignUp", this.state.passwordSignUp);
       data.append("categories", JSON.stringify(this.state.categories));
       data.append("plan", JSON.stringify(this.state.plans));
 
@@ -806,6 +813,8 @@ export default class Shop extends React.PureComponent {
             <Divider />
             <TextField onChange = {this.handleAccountEmail} hintText="Email address" style={textFieldstyle} value={this.state.accountEmail} underlineShow={false} />
             <Divider />
+            <TextField onChange = {this.handlePasswordSignUp} hintText="Password" type="password" style={textFieldstyle} value={this.state.passwordSignUp} underlineShow={false} />
+            <Divider />
           </Paper>
 
           <input onTouchTap = {this.storeAccountInfo} type="submit" placeholder="Submit" style={buttonBox3}/>
@@ -826,6 +835,8 @@ export default class Shop extends React.PureComponent {
             <TextField onChange = {this.handlePhoneNumber} hintText="Phone Number" style={textFieldstyle} value={this.state.phoneNumber} underlineShow={false} />
             <Divider />
             <TextField onChange = {this.handleAccountEmail} hintText="Email address" style={textFieldstyle} value={this.state.accountEmail} underlineShow={false} />
+            <Divider />
+            <TextField onChange = {this.handlePasswordSignUp} hintText="Password" style={textFieldstyle} value={this.state.passwordSignUp} underlineShow={false} />
             <Divider />
           </Paper>
           </div>

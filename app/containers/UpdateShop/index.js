@@ -36,7 +36,9 @@ export default class UpdateShop extends React.PureComponent {
       streetAddress:"",
       phoneNumber:"",
       accountEmail:"",
-      categories:[]
+      categories:[],
+      plans:[],
+      token:sessionStorage.getItem("token")
     }
   }
 
@@ -64,6 +66,34 @@ export default class UpdateShop extends React.PureComponent {
       categories.push(category);
       this.setState({
         categories:categories
+      })
+    }
+  }
+
+  handlePlan= (plan) => {
+    var plans = this.state.plans;
+    var found = false;
+    var index = null;
+    for(var i = 0; i<plans.length;i++)
+    {
+      if(plans[i]===plan)
+      {
+        found = true;
+        index = i;
+      }
+    }
+
+    if(found === true){
+      plans.splice(index,1);
+      this.setState({
+        plans:plans
+      })
+    }
+    else if(found === false)
+    {
+      plans.push(plan);
+      this.setState({
+        plans:plans
       })
     }
   }
@@ -100,7 +130,7 @@ export default class UpdateShop extends React.PureComponent {
   }
 
   componentWillMount(){
-      fetch("http://rb.thathashimottoslife.com/api/getCategories" + this.state.token,{
+      fetch("http://rb.thathashimottoslife.com/api/getCategories",{
         headers:{"Authorization":"Bearer "+this.state.token}
       })
       .then(function(res){
@@ -108,9 +138,16 @@ export default class UpdateShop extends React.PureComponent {
       })
       .then(function(json){
         this.setState({
-          categories:json
+          categories:JSON.parse(json.categories),
+          plans:JSON.parse(json.plans),
+          firstName:json.user.firstName,
+          lastName:json.user.lastName,
+          streetAddress:json.user.streetAddress,
+          phoneNumber:json.user.phoneNumber,
+          accountEmail:json.user.email,
         })
       }.bind(this))
+
     }
 
     destroyOrder = (id) =>{
@@ -161,7 +198,7 @@ export default class UpdateShop extends React.PureComponent {
     })
   }
 
-    storeAccountInfo = () => {
+    updateAccountInfo = () => {
 
       var data = new FormData ();
       data.append("firstName",this.state.firstName)
@@ -170,8 +207,9 @@ export default class UpdateShop extends React.PureComponent {
       data.append("phoneNumber", this.state.phoneNumber);
       data.append("accountEmail", this.state.accountEmail);
       data.append("categories", JSON.stringify(this.state.categories));
+      ata.append("plan", JSON.stringify(this.state.plans));
 
-  fetch("http://rb.thathashimottoslife.com/api/storeOrder",{
+  fetch("http://rb.thathashimottoslife.com/api/updateOrder",{
     method:"post",
     body:data
   })
@@ -179,7 +217,10 @@ export default class UpdateShop extends React.PureComponent {
     return response.json();
   })
   .then(function(json){
-    if(json.token !== false){
+    if(json.error){
+      alert(json.error);
+  }
+    else if(json.success){
       this.setState({
         firstName:"",
         lastName:"",
@@ -187,27 +228,7 @@ export default class UpdateShop extends React.PureComponent {
         phoneNumber:"",
         accountEmail:"",
       })
-
-      sessionStorage.setItem("token", json.token);
-      fetch(""+json.token, {
-        headers:{
-          "Authorization":"Bearer "+json.token
-        }
-      })
-      .then(function(response){
-        return response.json();
-      })
-      .then(function(json){
-        sessionStorage.setItem("user", JSON.stringify(json));
-        alert("Success! You did it!");
-      })
-
-    }
-    else if (json.token === false){
-      alert("Invalid credentials");
-    }
-    else if (json.error){
-      alert("You need to fill out all fields.");
+      alert(json.success);
     }
   }.bind(this))
 }
@@ -238,6 +259,38 @@ renderBoxes = (categoryList) => {
     }
     else {
       checkBoxes.push(<div style={styles.block}><Checkbox label={categoryList[i]} checked={true} style={styles.checkbox} onCheck={()=>this.handleCheckBox(categoryList[i])}/></div>);
+    }
+  }
+
+  return(checkBoxes);
+}
+
+renderPlans = (planList) => {
+  const styles={
+    block: {
+      width:"33%",
+      display:"flex",
+      flexDirection:"row",
+      alignItems:"center",
+    },
+    checkbox: {
+      marginBottom:"10px",
+      marginTop:"20px",
+      display:"flex",
+      flexDirection:"row",
+      alignItems:"center",
+    },
+  };
+  var plans = this.state.plans;
+  var checkBoxes = [];
+  for(var i = 0; i < planList.length; i++)
+  {
+    if(plans.indexOf(planList[i]) === -1)
+    {
+      checkBoxes.push(<div style={styles.block}><Checkbox label={planList[i]} checked={false} style={styles.checkbox} onCheck={()=>this.handlePlan(planList[i])}/></div>);
+    }
+    else {
+      checkBoxes.push(<div style={styles.block}><Checkbox label={planList[i]} checked={true} style={styles.checkbox} onCheck={()=>this.handlePlan(planList[i])}/></div>);
     }
   }
 
@@ -736,7 +789,7 @@ renderBoxes = (categoryList) => {
          <div style={headerStyle3}>Recycle Bin</div>
            <div style={columnWrapper}>
             <div style={checkboxColumn}>
-              {this.renderBoxes(["Basic", "Plus"])}
+          {this.renderPlans(["Basic", "Plus"])}
            </div>
          </div>
 
@@ -797,7 +850,7 @@ renderBoxes = (categoryList) => {
             <Divider />
           </Paper>
 
-          <input onTouchTap = {this.storeAccountInfo} type="submit" placeholder="Submit" style={buttonBox3}/>
+          <input onTouchTap = {this.updateAccountInfo} type="submit" placeholder="Submit" style={buttonBox3}/>
 
 
            <div style={textStyle2}>
@@ -827,7 +880,7 @@ renderBoxes = (categoryList) => {
           </div>
 
           <div style={divStyle5Mobile}>
-           <input onTouchTap = {this.storeAccountInfo} type="submit" placeholder="Submit" style={buttonBox3}/>
+           <input onTouchTap = {this.updateAccountInfo} type="submit" placeholder="Submit" style={buttonBox3}/>
 
 
 

@@ -117,7 +117,7 @@ handlePasswordSignUp = (event) => {
 }
 
    storeSignUp = () => {
-
+     var _this = this;
      var data = new FormData ();
      data.append("username",this.state.username)
      data.append("email", this.state.emailSignUp);
@@ -137,9 +137,9 @@ handlePasswordSignUp = (event) => {
        emailSignUp:"",
        passwordSignUp:"",
      })
-       alert("Success! You did it!");
-       this.handleClose();
-       this.context.router.push("/Shop");
+       alert(json.success);
+       _this.handleClose();
+       _this.context.router.push("/Shop");
 
    }
    else if (json.token === false){
@@ -163,7 +163,7 @@ handlePasswordSignIn = (event) => {
 }
 
     storeSignIn = () => {
-
+      var _this = this;
       var data = new FormData ();
       data.append("email", this.state.emailSignIn);
       data.append("password", this.state.passwordSignIn);
@@ -176,12 +176,17 @@ handlePasswordSignIn = (event) => {
     return response.json();
     })
     .then(function(json){
-    if(json.token !== false){
+    if (json.error){
+      alert("You need to fill out all fields.");
+    }
+    else if (json.token === false){
+      alert("Invalid credentials");
+    }
+    else if(json.token !== false){
       this.setState({
         emailSignIn:"",
         passwordSignIn:"",
       })
-
       sessionStorage.setItem("token", json.token);
       fetch("http://rb.thathashimottoslife.com/api/getUsers?token"+json.token, {
         headers:{
@@ -194,16 +199,9 @@ handlePasswordSignIn = (event) => {
       .then(function(json){
         sessionStorage.setItem("user", JSON.stringify(json));
         alert("Success! You did it!");
-        this.handleClose();
-        this.context.router.push("/UpdateShop");
+        _this.handleClose();
+        _this.context.router.push("/UpdateShop");
       })
-
-    }
-    else if (json.token === false){
-      alert("Invalid credentials");
-    }
-    else if (json.error){
-      alert("You need to fill out all fields.");
     }
   }.bind(this))
 }
